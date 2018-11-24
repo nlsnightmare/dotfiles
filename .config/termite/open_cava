@@ -1,0 +1,10 @@
+[options]
+font = DejaVuSansMono 12
+size_hints = false
+padding = 0
+
+[colors]
+background = rgba(0,0,0,0)
+
+
+[hints]
