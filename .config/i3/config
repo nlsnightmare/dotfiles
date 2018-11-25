@@ -26,7 +26,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec urxvt
 
 
 bindsym $mod+F1 exec chromium
@@ -184,7 +184,7 @@ bindsym XF86AudioPrev exec playerctl previous
 title_align center
 
 default_border pixel 0
-gaps inner 20
+gaps inner 10
 # smart_gaps on
 
 bindsym Print exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
@@ -204,4 +204,6 @@ exec --no-startup-id termite -c ~/.config/termite/open_cava -e cava
 # Set language layout
 exec --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,gr"
 exec --no-startup-id numlockx # set numlock to active
+
+exec --no-startup-id wal -R
 exec_always --no-startup-id "notify-send 'i3wm' 'Reloaded successfully '" 

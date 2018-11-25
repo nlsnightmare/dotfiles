@@ -6,16 +6,18 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'challenger-deep-theme/vim'
+Plugin 'dylanaraps/wal.vim'
 
 call vundle#end()
 
 syntax on
+set expandtab
 set tabstop=4
 set softtabstop=4
-set expandtab
+set shiftwidth=4
 set number
 set showcmd
-set cursorline
+" set cursorline
 
 filetype indent on
 set wildmenu
@@ -49,10 +51,17 @@ nnoremap gV `[v`]
 
 nnoremap <leader><space> :nohlsearch<CR>
 
-set termguicolors
+set notermguicolors
+colorscheme wal
+:
+" set termguicolors
 " colorscheme challenger_deep
 " 
 " if &term =~ '256color'
     " set t_ut=
 " endif
+hi CursorLineNr guibg=#ff0000
+
+
+hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 

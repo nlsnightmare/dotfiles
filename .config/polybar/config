@@ -144,8 +144,6 @@ wrapping-scroll = false
 
 strip-wsnumbers = true
 
-icon-9 = 9;A
-
 
 ; Only show workspaces on the same output as the bar
 ; pin-workspaces = true
@@ -171,7 +169,7 @@ label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
