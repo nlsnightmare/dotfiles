@@ -1,0 +1,49 @@
+#!/bin/bash
+# nice colors: 
+# cherry: ff030f
+
+scripts_directory=~/.scripts/colors
+wallpapers_directory=~/Pictures/wallpapers
+
+options=("red" "grey" "blue" "purple" "rainbow" "ambient" "off" "showoff")
+
+if [[ "$#" -ne 1 ]]; then
+    for option in ${options[@]}; do
+        echo $option
+    done
+elif [[ $1 == "showoff" ]]; then
+    for option in ${options[@]}; do
+        ./mode $option
+        sleep 2
+    done
+elif [[ $1 == "off" ]]; then
+    $scripts_directory/keyboard.py "#000000"
+    $scripts_directory/strip.py "#000000"
+elif [[ $1 == "red" ]]; then
+    $scripts_directory/keyboard.py "#ff0000"
+    $scripts_directory/strip.py "#ff0000"
+    hsetroot -full $wallpapers_directory/$1.png
+elif [[ $1 == "grey" ]]; then
+    $scripts_directory/keyboard.py "#ffffff"
+    $scripts_directory/strip.py "#ffffff"
+    hsetroot -full $wallpapers_directory/$1.jpg
+elif [[ $1 == "blue" ]]; then
+    $scripts_directory/keyboard.py "#0012ff"
+    $scripts_directory/strip.py "#0012ff"
+    hsetroot -full $wallpapers_directory/$1.jpg
+elif [[ $1 == "purple" ]]; then
+    $scripts_directory/keyboard.py "#ff03ff"
+    $scripts_directory/strip.py "#ff03ff"
+    hsetroot -full $wallpapers_directory/$1.jpg
+elif [[ $1 == "rainbow" ]]; then
+    $scripts_directory/strip.py "R"
+    $scripts_directory/keyboard.py "rainbow"
+    hsetroot -full $wallpapers_directory/$1.jpg
+elif [[ $1 == "ambient" ]]; then
+    $scripts_directory/strip.py "A"
+    $scripts_directory/keyboard.py "ambient"
+else
+    $scripts_directory/strip.py "$1"
+    $scripts_directory/keyboard.py "$1"
+    hsetroot -tile $wallpapers_directory/pattern.jpg -tint "$1"
+fi
