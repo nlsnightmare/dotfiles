@@ -7,6 +7,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'challenger-deep-theme/vim'
 Plugin 'dylanaraps/wal.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'othree/vim-autocomplpop'
+
 
 call vundle#end()
 
