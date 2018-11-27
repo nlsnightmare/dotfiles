@@ -47,10 +47,10 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Highlight last inserted text
 nnoremap gV `[v`]
-
-
-
 nnoremap <leader><space> :nohlsearch<CR>
+
+autocmd FileType python setlocal completeopt-=preview
+
 
 set notermguicolors
 colorscheme wal
