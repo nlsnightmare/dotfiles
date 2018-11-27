@@ -29,6 +29,7 @@ set hlsearch
 
 set foldenable
 set foldlevelstart=10
+nnoremap Q <nop>
 nnoremap <space> za
 set foldmethod=indent
 
