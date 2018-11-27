@@ -172,8 +172,6 @@ exec --no-startup-id "xrandr --output DP-1 --mode 1600x900"
 
 font pango:DejaVu Sans Mono bold 12
 
-exec "feh --bg-fill ~/Pictures/background.jpg"
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
