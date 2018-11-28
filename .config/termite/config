@@ -4,7 +4,46 @@ size_hints = false
 padding = 0
 
 [colors]
-background = rgba(0,0,0,1)
+
+# special
+foreground      = #daa89f
+foreground_bold = #daa89f
+cursor          = #daa89f
+background      = #0f0d0d
+
+# black
+color0  = #0f0d0d
+color8  = #98756f
+
+# red
+color1  = #621f49
+color9  = #a40031
+
+# green
+color2  = #4e244e
+color10 = #8f4f8f
+
+# yellow
+color3  = #774355
+color11 = #774355
+
+# blue
+color4  = #9e1f35
+color12 = #9e1f35
+
+# magenta
+color5  = #9c284a
+color13 = #9c284a
+
+# cyan
+color6  = #bb4748
+color14 = #bb4748
+
+# white
+color7  = #daa89f
+color15 = #daa89f
+
+
 
 
 [hints]

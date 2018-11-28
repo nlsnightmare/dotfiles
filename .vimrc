@@ -9,8 +9,8 @@ Plugin 'challenger-deep-theme/vim'
 Plugin 'dylanaraps/wal.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'othree/vim-autocomplpop'
-
+Plugin 'chrisbra/Colorizer'
+" Plugin 'othree/vim-autocomplpop'
 
 call vundle#end()
 
@@ -24,6 +24,7 @@ set showcmd
 " set cursorline
 
 filetype indent on
+set wildmode=list:longest,full
 set wildmenu
 set showmatch
 
@@ -69,4 +70,3 @@ hi CursorLineNr guibg=#ff0000
 
 
 hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
-

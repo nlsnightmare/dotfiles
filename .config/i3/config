@@ -41,10 +41,10 @@ bindsym $mod+d exec "rofi -show run"
 bindsym $mod+m exec "rofi -modi color:~/.scripts/colors/mode -show color"
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -53,10 +53,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -65,10 +65,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Shift+h split h
+# bindsym $mod+Shift+_ split h
 
 # split in vertical orientation
-bindsym $mod+Shift+v split v
+# bindsym $mod+Shift+- split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -195,6 +195,11 @@ bindsym Print exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 exec --no-startup-id compton
 
 exec --no-startup-id i3-msg workspace $ws1 && termite
+
+
+for_window [class="retroarch"] fullscreen enable
+assign [class="retroarch"] $ws6
+
 # Start Chromium
 assign [class="Chromium"] $ws2
 exec --no-startup-id chromium
