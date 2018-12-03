@@ -83,6 +83,10 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
+if [[ ! -f ~/.vim/bunfle/Vundle.vim ]]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
+
 if [[ ! -d ~/.emacs.d ]]; then
     git clone https://github.com/nlsnightamare/.emacs.d
     rm ~/.emacs

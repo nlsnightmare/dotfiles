@@ -3,25 +3,12 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'challenger-deep-theme/vim'
 Plugin 'dylanaraps/wal.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'chrisbra/Colorizer'
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
-
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-
-" Plugin 'othree/vim-autocomplpop'
 call vundle#end()
-
-call deoplete#enable()
-let g:deoplete#auto_complete_delay=50
 
 
 filetype on
@@ -30,7 +17,7 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set number
+set number relativenumber
 set showcmd
 " set cursorline
 
