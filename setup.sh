@@ -18,8 +18,8 @@ pacaur -Syu # Update
 
 export install_targets=(
         # Editors
-        vim              # Vim Editor
-        emacs            # Editor
+        nvim             # NeoVim
+        emacs            # Emacs
 
         # Theaming
         neofetch         # Display system info on terminal
