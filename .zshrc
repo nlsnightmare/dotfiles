@@ -2,6 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.scripts/colors
 ZSH_THEME="robbyrussell"
+
 plugins=(
     git
 )
@@ -15,11 +16,16 @@ bindkey '^ ' autosuggest-execute
 
 HYPHEN_INSENSITIVE="true"
 
-# Make ranger use vim
-VISUAL=vim; export VISUAL EDITOR=vim; export EDITOR
+# Make ranger use nvim
+VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
+
+function rtheme {
+    wal -i `find ~/Pictures/new | sort -R | tail -1`
+}
 
 alias p='pacaur'
 alias cl='clear; neofetch'
+alias vim='nvim'
 
 
 neofetch
