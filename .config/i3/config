@@ -66,9 +66,11 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 # bindsym $mod+Shift+_ split h
+bindsym $mod+Control+h split h
 
 # split in vertical orientation
 # bindsym $mod+Shift+- split v
+bindsym $mod+Control+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -194,10 +196,25 @@ bindsym Print exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 
 exec --no-startup-id compton
 
-exec --no-startup-id i3-msg workspace $ws1 && termite
+exec --no-startup-id i3-msg workspace $ws1 && urxvt
 
 
 for_window [class="retroarch"] fullscreen enable
+
+for_window [class="(?i)urxvt"] border pixel 2
+# set_from_resource $test i3wm.color12
+set_from_resource $active_border i3wm.color12
+set_from_resource $inactive_border i3wm.color0
+client.focused          #ff0000 #0ff000 #00ff00 $active_border     $active_border
+client.focused_inactive #333333 #5f676a #ffffff $inactive_border   $inactive_border
+client.unfocused        #333333 #222222 #888888 $inactive_border   $inactive_border
+client.urgent           #2f343a #900000 #ffffff $inactive_border   $inactive_border
+client.placeholder      #000000 #0c0c0c #ffffff $inactive_border   $inactive_border
+
+# for_window [class="^.*"] border pixel 1
+
+
+
 assign [class="retroarch"] $ws6
 
 # Start Chromium

@@ -14,7 +14,7 @@ if [[ "$#" -ne 1 ]]; then
 
 elif [[ $1 == "showoff" ]]; then
     for option in ${options[@]}; do
-        ./mode $option
+        mode $option
         sleep 2
     done
 
@@ -44,11 +44,11 @@ elif [[ $1 == "grey" ]]; then
 elif [[ $1 == "purple" ]]; then
     $scripts_directory/keyboard "#ff03ff"
     $scripts_directory/strip "#ff03ff"
-    hsetroot -full $wallpapers_directory/$1.jpg
+    wal -i ~/Pictures/space.jpg -q
 elif [[ $1 == "rainbow" ]]; then
     $scripts_directory/strip "R"
     $scripts_directory/keyboard "rainbow"
-    hsetroot -full $wallpapers_directory/$1.jpg
+    wal -i ~/Pictures/Cool/rainbow.jpg -b "#001122" -q
 elif [[ $1 == "ambient" ]]; then
     $scripts_directory/strip "A"
     $scripts_directory/keyboard "ambient"

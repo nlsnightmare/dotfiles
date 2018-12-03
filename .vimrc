@@ -10,10 +10,21 @@ Plugin 'dylanaraps/wal.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'chrisbra/Colorizer'
-" Plugin 'othree/vim-autocomplpop'
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
 
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+
+" Plugin 'othree/vim-autocomplpop'
 call vundle#end()
 
+call deoplete#enable()
+let g:deoplete#auto_complete_delay=50
+
+
+filetype on
 syntax on
 set expandtab
 set tabstop=4
@@ -55,7 +66,13 @@ nnoremap gV `[v`]
 nnoremap <leader><space> :nohlsearch<CR>
 
 autocmd FileType python setlocal completeopt-=preview
+autocmd FileType rust setlocal completeopt-=preview
+set completeopt=menu,preview,noinsert
 
+
+
+" use the system clipboard
+set clipboard=unnamedplus
 
 set notermguicolors
 colorscheme wal
@@ -64,9 +81,10 @@ colorscheme wal
 " colorscheme challenger_deep
 " 
 " if &term =~ '256color'
-    " set t_ut=
+" set t_ut=
 " endif
 hi CursorLineNr guibg=#ff0000
 
+let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
 
 hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
