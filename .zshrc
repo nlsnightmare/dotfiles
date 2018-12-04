@@ -1,6 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.scripts/colors
+export PATH=$PATH:~/.gem/ruby/2.5.0/bin
 ZSH_THEME="robbyrussell"
 
 plugins=(
