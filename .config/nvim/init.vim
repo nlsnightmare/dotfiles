@@ -14,6 +14,10 @@ Plugin 'zchee/deoplete-jedi'
 Plugin 'racer-rust/vim-racer'
 
 Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
+Plugin 'Shougo/deoplete-clangx'
+Plugin 'Shougo/neoinclude.vim'
+
 call vundle#end()
 
 
