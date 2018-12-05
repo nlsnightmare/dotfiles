@@ -18,8 +18,16 @@ Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plugin 'Shougo/deoplete-clangx'
 Plugin 'Shougo/neoinclude.vim'
 
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
 call vundle#end()
 
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
 
