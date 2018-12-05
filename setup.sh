@@ -39,8 +39,6 @@ export install_targets=(
         hsetroot         # Tile, tint wallpapers & more
 
         # Programming
-        ruby
-        ruby-rdoc        # Needed for gems
         rustup           # Rustlang
         nodejs
         npm
@@ -72,7 +70,7 @@ sudo pip install jedi autopep8 flake8 yapf
 sudo pip install pyserial
 
 # Install jekyll
-gem install jekyll bundler
+# gem install jekyll bundler
 
 
 
