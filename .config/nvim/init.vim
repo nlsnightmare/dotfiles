@@ -22,6 +22,7 @@ Plugin 'Shougo/neoinclude.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
+Plugin 'mattn/emmet-vim'
 call vundle#end()
 
 
