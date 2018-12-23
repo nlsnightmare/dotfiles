@@ -72,6 +72,7 @@ export install_targets=(
         sl               # Yay! trains!
         tree             # Shows a tree of things
         ranger-git       # CLI file browser
+        krita            # Image editor
 )
 
 pacaur -S ${install_targets[*]} --noconfirm --noedit --needed
@@ -145,4 +146,6 @@ if [[ ! -d ~/.emacs.d ]]; then
     git clone https://github.com/nlsnightmare/.emacs.d
     rm ~/.emacs
 fi
+
+# restore last dir
 popd > /dev/null
