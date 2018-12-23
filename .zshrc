@@ -2,6 +2,8 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.scripts/colors
 export PATH=$PATH:~/.gem/ruby/2.5.0/bin
+export PATH=$PATH:~/.config/composer/vendor/bin
+
 ZSH_THEME="robbyrussell"
 
 plugins=(
@@ -21,12 +23,15 @@ HYPHEN_INSENSITIVE="true"
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
 function rtheme {
-    wal -i `find ~/Pictures/new | sort -R | tail -1`
+    wal -i `find ~/Pictures/ | sort -R | tail -1`
+    ~/.scripts/colors/keyboard "#$col"
+    ~/.scripts/colors/strip "#$col"
 }
 
 alias p='pacaur'
 alias cl='clear; neofetch'
 alias vim='nvim'
+alias open='xdg-open'
 
 
 neofetch
