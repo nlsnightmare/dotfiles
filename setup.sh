@@ -40,6 +40,7 @@ export install_targets=(
         python-pywal       # Generate colorscheme from images
         notify-send        # Create notifications
         compton            # Transparency and more
+        unclutter          # Hide mouse when idle
 
     	# Keyboard
         openrazer-meta     # Needed for Razer Keyboard Color control
@@ -145,6 +146,11 @@ if [[ ! -d ~/.emacs.d ]]; then
     mkdir ~/Documents/Agenda
     git clone https://github.com/nlsnightmare/.emacs.d
     rm ~/.emacs
+fi
+
+if [[ ! -d ~/.fzf ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --all
 fi
 
 # restore last dir
