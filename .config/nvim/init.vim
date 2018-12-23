@@ -8,16 +8,35 @@ Plugin 'dylanaraps/wal.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'chrisbra/Colorizer'
 
+Plugin 'vim-syntastic/syntastic'
+
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plugin 'zchee/deoplete-jedi'
-Plugin 'racer-rust/vim-racer'
 
 Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 Plugin 'Shougo/deoplete-clangx'
 Plugin 'Shougo/neoinclude.vim'
 
+"-------------------------------
+" RUST
+"-------------------------------
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
+
+let g:rustfmt_autosave = 1
+let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
+
+autocmd FileType rust nmap <buffer> <leader>t :RustTest<CR>
+autocmd FileType rust nmap <buffer> <leader>T :RustTest!<CR>
+" autocmd FileType rust nmap <buffer> <leader>r :RustRun<CR>
+autocmd FileType rust nmap <buffer> <leader>r :!cargo run<CR>
+autocmd FileType rust nmap <buffer> <leader>f :RustFmt<CR>
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap gD <Plug>(rust-doc)
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -43,7 +62,6 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 call deoplete#enable()
-let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
 
 filetype on
 syntax on
@@ -88,9 +106,11 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType rust setlocal completeopt-=preview
+autocmd FileType html set tabstop=2|set shiftwidth=2|set noexpandtab
 set completeopt=menu,preview,noinsert
 
 
+set nowrap
 
 " use the system clipboard
 set clipboard=unnamedplus
@@ -106,7 +126,17 @@ colorscheme wal
 " endif
 hi CursorLineNr guibg=#ff0000
 
-let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
 
 hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 
+
+
+
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
