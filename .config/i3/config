@@ -102,8 +102,8 @@ set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws9 "9:"
+set $ws10 "10:"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -187,27 +187,34 @@ bindsym XF86AudioPrev exec playerctl previous
 
 title_align center
 
-default_border pixel 0
+default_border pixel 2
 gaps inner 10
-# smart_gaps on
+smart_gaps on
 
 bindsym Print exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 
 
-exec --no-startup-id compton
-
-exec --no-startup-id i3-msg workspace $ws1 && urxvt
 
 
 for_window [class="retroarch"] fullscreen enable
 
 for_window [class="(?i)urxvt"] border pixel 2
-# set_from_resource $test i3wm.color12
-set_from_resource $active_border i3wm.color12
+
+set_from_resource $active_border i3wm.color3
 set_from_resource $inactive_border i3wm.color0
-client.focused          #ff0000 #0ff000 #00ff00 $active_border     $active_border
-client.focused_inactive #333333 #5f676a #ffffff $inactive_border   $inactive_border
-client.unfocused        #333333 #222222 #888888 $inactive_border   $inactive_border
+
+set_from_resource $active_bg i3wm.color3
+set_from_resource $active_fg i3wm.color0
+
+set_from_resource $inactive_bg i3wm.color0
+set_from_resource $inactive_fg i3wm.color3
+
+# client.focused          #ff0000 #0ff000 #f0f0f0 $active_border     $active_border
+#                       title border    bg       fg
+client.focused          $active_border $active_bg $active_fg $active_border     $active_border
+client.unfocused        $inactive_border $inactive_bg $inactive_fg $inactive_border   $inactive_border
+
+client.focused_inactive #ff0000 #5f676a #ffffff $inactive_border   $inactive_border
 client.urgent           #2f343a #900000 #ffffff $inactive_border   $inactive_border
 client.placeholder      #000000 #0c0c0c #ffffff $inactive_border   $inactive_border
 
@@ -215,7 +222,9 @@ client.placeholder      #000000 #0c0c0c #ffffff $inactive_border   $inactive_bor
 
 
 
-assign [class="retroarch"] $ws6
+# startup stuff
+exec --no-startup-id compton
+exec --no-startup-id i3-msg workspace $ws1 && urxvt
 
 # Start Chromium
 assign [class="Chromium"] $ws2
@@ -223,7 +232,7 @@ exec --no-startup-id chromium
 
 # Start Cava
 assign [title="cava"] $ws3
-exec --no-startup-id termite -c ~/.config/termite/open_cava -e cava
+exec --no-startup-id urxvt -e cava
 
 # Start mpd
 exec --no-startup-id mpd
