@@ -78,7 +78,9 @@ set showcmd
 " set cursorline
 
 filetype indent on
-set wildmode=list:longest,full
+set smartcase
+set ignorecase
+set wildmode=list,longest:full
 set wildmenu
 set showmatch
 
@@ -97,6 +99,14 @@ nnoremap k gk
 nnoremap L $
 nnoremap H ^
 
+nnoremap <C-b> :Buffers<CR>
+nnoremap <C-e> :Files<CR>
+nnoremap <leader>s :Lines<CR>
+
+
+
+let g:fzf_layout = { 'down': '~40%' }
+
 vnoremap L $
 vnoremap H ^
 
@@ -107,7 +117,7 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 
 " Eval .zshrc
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>:nohlsearch<CR>
 
 
 " Highlight last inserted text
@@ -129,7 +139,6 @@ set notermguicolors
 colorscheme wal
 hi CursorLineNr guibg=#ff0000
 let g:lightline = { 'colorscheme': 'wal' }
-
 
 hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 
