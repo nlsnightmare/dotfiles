@@ -13,6 +13,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-syntastic/syntastic'
 
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 Plugin 'zchee/deoplete-jedi'
 
@@ -125,14 +127,8 @@ set clipboard=unnamedplus
 
 set notermguicolors
 colorscheme wal
-:
-" set termguicolors
-" colorscheme challenger_deep
-" 
-" if &term =~ '256color'
-" set t_ut=
-" endif
 hi CursorLineNr guibg=#ff0000
+let g:lightline = { 'colorscheme': 'wal' }
 
 
 hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
@@ -151,4 +147,3 @@ let g:syntastic_check_on_wq = 0
 
 
 
-let g:lightline = { 'colorscheme': 'wal' }
