@@ -211,7 +211,7 @@ set_from_resource $inactive_fg i3wm.color3
 
 # client.focused          #ff0000 #0ff000 #f0f0f0 $active_border     $active_border
 #                       title border    bg       fg
-client.focused          $active_border $active_bg $active_fg $active_border     $active_border
+client.focused          $active_border   $active_bg   $active_fg   $active_border     $active_border
 client.unfocused        $inactive_border $inactive_bg $inactive_fg $inactive_border   $inactive_border
 
 client.focused_inactive #ff0000 #5f676a #ffffff $inactive_border   $inactive_border
@@ -236,6 +236,16 @@ exec --no-startup-id urxvt -e cava
 
 # Start mpd
 exec --no-startup-id mpd
+
+
+# disable idle screen off
+exec --no-startup-id "xset s off"
+exec --no-startup-id "xset -dpms"
+
+# hide cursor after a delay
+exec --no-startup-id "unclutter --timeout 3"
+
+
 
 
 # Set language layout
