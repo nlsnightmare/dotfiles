@@ -29,6 +29,10 @@ function rtheme {
     ~/.scripts/colors/strip "#$col"
 }
 
+function ins {
+    pacaur -S $(pacaur -Ssq $1 | fzf)
+}
+
 alias p='pacaur'
 alias cl='clear; neofetch'
 alias vim='nvim'
@@ -36,3 +40,5 @@ alias open='xdg-open'
 
 
 neofetch
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
