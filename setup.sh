@@ -25,7 +25,7 @@ export install_targets=(
 
         # Theaming
         neofetch           # Display system info on terminal
-        rxvt-unicode       # Terminal emulator
+        rxvt-unicode-pixbuf# Terminal emulator
         zsh                # Zsh shell
         feh                # Change desktop background
         rofi               # Application launcher
