@@ -5,9 +5,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'dylanaraps/wal.vim'
-Plugin 'tpope/vim-surround'
 Plugin 'chrisbra/Colorizer'
+Plugin 'itchyny/lightline.vim'
 
+
+Plugin 'tpope/vim-surround'
 Plugin 'vim-syntastic/syntastic'
 
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -90,6 +92,12 @@ set foldmethod=indent
 
 nnoremap j gj
 nnoremap k gk
+nnoremap L $
+nnoremap H ^
+
+vnoremap L $
+vnoremap H ^
+
 inoremap kj <esc>
 
 " Eval .vimrc
@@ -140,3 +148,7 @@ hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+
+let g:lightline = { 'colorscheme': 'wal' }
