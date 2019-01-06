@@ -26,10 +26,14 @@ VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 function rtheme {
     wal -i `find ~/Pictures/ | sort -R | tail -1`
     col=`xrdb -query | grep color4 | tail -n1 | cut -d '#' -f2`
-    killall dunst
-    dunst &
+    killall dunst &> /dev/null
+    dunst &> /dev/null &
     ~/.scripts/colors/keyboard "#$col"
     ~/.scripts/colors/strip "#$col"
+    clear
+    neofetch
+
+    notify-send "Theme Changed!"
 }
 
 function ins {
