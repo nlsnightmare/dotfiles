@@ -41,6 +41,7 @@ export install_targets=(
         notify-send        # Create notifications
         compton            # Transparency and more
         unclutter          # Hide mouse when idle
+        dunst
 
     	# Keyboard
         openrazer-meta     # Needed for Razer Keyboard Color control
