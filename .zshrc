@@ -26,12 +26,18 @@ VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 function rtheme {
     wal -i `find ~/Pictures/ | sort -R | tail -1`
     col=`xrdb -query | grep color4 | tail -n1 | cut -d '#' -f2`
+    killall dunst
+    dunst &
     ~/.scripts/colors/keyboard "#$col"
     ~/.scripts/colors/strip "#$col"
 }
 
 function ins {
     pacaur -S $(pacaur -Ssq $1 | fzf)
+}
+
+function y-song {
+    youtube-dl -x --audio-format mp3 $1
 }
 
 alias p='pacaur'
