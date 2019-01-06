@@ -214,12 +214,11 @@ set_from_resource $inactive_fg i3wm.color3
 client.focused          $active_border   $active_bg   $active_fg   $active_border     $active_border
 client.unfocused        $inactive_border $inactive_bg $inactive_fg $inactive_border   $inactive_border
 
-client.focused_inactive #ff0000 #5f676a #ffffff $inactive_border   $inactive_border
+client.focused_inactive $active_border $inactive_bg #ffffff $inactive_border   $inactive_border
 client.urgent           #2f343a #900000 #ffffff $inactive_border   $inactive_border
 client.placeholder      #000000 #0c0c0c #ffffff $inactive_border   $inactive_border
 
 # for_window [class="^.*"] border pixel 1
-
 
 
 # startup stuff
@@ -236,6 +235,7 @@ exec --no-startup-id urxvt -e cava
 
 # Start mpd
 exec --no-startup-id mpd
+
 
 
 # disable idle screen off
