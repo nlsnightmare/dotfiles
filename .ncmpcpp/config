@@ -30,7 +30,7 @@
 #
 ## Needed for tag editor and file operations to work.
 ##
-#mpd_music_dir = ~/music
+mpd_music_dir = /mnt/files/Music/Alternative Rock
 #
 #mpd_crossfade_time = 5
 #
@@ -263,6 +263,7 @@ playlist_disable_highlight_delay = 3
 ##
 #
 #song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+song_columns_list_format = (22)[]{a} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
 #
 ##### various settings #####
 #
@@ -317,7 +318,7 @@ execute_on_song_change = "~/.scripts/notify_song"
 ## Note: You can specify third character which will be used to build 'empty'
 ## part of progressbar.
 ##
-#progressbar_look = =>
+progressbar_look = ─>
 #
 ## Available values: database, playlist.
 ##
@@ -341,15 +342,13 @@ execute_on_song_change = "~/.scripts/notify_song"
 #
 #default_tag_editor_pattern = %n - %t
 #
-#header_visibility = yes
+header_visibility = no
+statusbar_visibility = yes
+titles_visibility = yes
+header_text_scrolling = yes
 #
-#statusbar_visibility = yes
 #
-#titles_visibility = yes
-#
-#header_text_scrolling = yes
-#
-#cyclic_scrolling = no
+cyclic_scrolling = yes
 #
 #lines_scrolled = 2
 #
@@ -431,7 +430,7 @@ execute_on_song_change = "~/.scripts/notify_song"
 ## Note: if below is enabled, ncmpcpp will ignore leading "The" word while
 ## sorting items in browser, tags in media library, etc.
 ##
-#ignore_leading_the = no
+ignore_leading_the = yes
 #
 ##
 ## Note: if below is enabled, ncmpcpp will ignore diacritics while searching and
@@ -472,7 +471,7 @@ execute_on_song_change = "~/.scripts/notify_song"
 #
 #search_engine_default_search_mode = 1
 #
-#external_editor = nano
+external_editor = nvim
 #
 ## Note: set to yes if external editor is a console application.
 ##
