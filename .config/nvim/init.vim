@@ -80,18 +80,18 @@ set showcmd
 filetype indent on
 set smartcase
 set ignorecase
-set wildmode=list,longest:full
+set wildmode=longest,list,longest:full
 set wildmenu
 set showmatch
 
 set incsearch
 set hlsearch
 
+let mapleader = "\<Space>"
 
 set foldenable
 set foldlevelstart=10
 nnoremap Q <nop>
-nnoremap <space> za
 set foldmethod=indent
 
 nnoremap j gj
@@ -99,9 +99,16 @@ nnoremap k gk
 nnoremap L $
 nnoremap H ^
 
+nnoremap <tab> za
 nnoremap <C-b> :Buffers<CR>
 nnoremap <C-e> :Files<CR>
 nnoremap <leader>s :Lines<CR>
+nnoremap <leader>q :bd<cr>
+nnoremap <leader>Q :bd!<cr>
+
+nnoremap <leader>l :SyntasticToggle<cr>
+nnoremap <leader>n :lnext<cr>
+nnoremap <leader>p :lprev<cr>
 
 
 
@@ -111,6 +118,7 @@ vnoremap L $
 vnoremap H ^
 
 inoremap kj <esc>
+
 
 " Eval .vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -126,7 +134,6 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType rust setlocal completeopt-=preview
-autocmd FileType html set tabstop=2|set shiftwidth=2|set noexpandtab
 set completeopt=menu,preview,noinsert
 
 
@@ -145,14 +152,16 @@ hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 
 
 
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_enable_signs=1
 
-
+let g:syntastic_error_symbol = "✗"
+highlight SyntasticErrorLine guifg=white guibg=red
