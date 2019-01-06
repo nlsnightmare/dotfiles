@@ -74,6 +74,9 @@ export install_targets=(
         tree             # Shows a tree of things
         ranger-git       # CLI file browser
         krita            # Image editor
+        mpd              # Music Player Daemon
+        mpc              # MPD CLI client
+        ncmpcpp          # MPD client 
 )
 
 pacaur -S ${install_targets[*]} --noconfirm --noedit --needed
