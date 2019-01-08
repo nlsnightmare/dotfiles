@@ -1,5 +1,6 @@
 URxvt*scrollBar: false
-URxvt.font: xft:DejaVuSansMono:12
+! URxvt.font: xft:DejaVuSansMono:12
+URxvt.font: xft:Iosevka:size=14
 URxvt*depth: 30
 URxvt.transparent:   true
 URxvt.shading: 20

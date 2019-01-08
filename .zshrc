@@ -6,9 +6,13 @@ export PATH=$PATH:~/.gem/ruby/2.5.0/bin
 export PATH=$PATH:~/.config/composer/vendor/bin
 
 ZSH_THEME="robbyrussell"
+ZSH_THEME="refined"
 
 plugins=(
     git
+    command-not-found
+    last-working-dir
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -31,7 +35,7 @@ function rtheme {
     ~/.scripts/colors/keyboard "#$col"
     ~/.scripts/colors/strip "#$col"
     clear
-    neofetch
+    neofetch 
 
     notify-send "Theme Changed!"
 }

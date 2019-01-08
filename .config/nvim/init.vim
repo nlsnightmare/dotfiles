@@ -1,33 +1,38 @@
-set nocompatible
-filetype off
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'dylanaraps/wal.vim'
-Plugin 'chrisbra/Colorizer'
-Plugin 'itchyny/lightline.vim'
+call plug#begin('~/.vim/plugged')
+Plug 'VundleVim/Vundle.vim'
+Plug 'dylanaraps/wal.vim'
+Plug 'chrisbra/Colorizer'
+Plug 'itchyny/lightline.vim'
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-surround'
+Plug 'vim-syntastic/syntastic'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
+Plug 'SirVer/ultisnips'
+Plug 'mattn/emmet-vim'
 
-Plugin 'tpope/vim-surround'
-Plugin 'vim-syntastic/syntastic'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'Shougo/deoplete-clangx'
+Plug 'Shougo/neoinclude.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+call plug#end()
 
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-
-Plugin 'zchee/deoplete-jedi'
-
-Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-
-Plugin 'Shougo/deoplete-clangx'
-Plugin 'Shougo/neoinclude.vim'
-
-"-------------------------------
-" RUST
-"-------------------------------
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetsDir="~/.config/nvim/snippets/"
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/snippets/']
 
 let g:rustfmt_autosave = 1
 let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
@@ -41,17 +46,6 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap gD <Plug>(rust-doc)
-
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
-Plugin 'mattn/emmet-vim'
-call vundle#end()
-
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
 

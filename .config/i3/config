@@ -175,9 +175,9 @@ exec --no-startup-id "xrandr --output DP-1 --mode 1600x900"
 font pango:DejaVu Sans Mono bold 12
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +5% && notify-send ' volume up'"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -5% && notify-send ' volume down'"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle && notify-send ' mute'"
 
 # Media player controls
 bindsym XF86AudioPlay exec mpc toggle
@@ -192,8 +192,6 @@ gaps inner 10
 smart_gaps on
 
 bindsym Print exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
-
-
 
 
 for_window [class="retroarch"] fullscreen enable
@@ -223,18 +221,16 @@ client.placeholder      #000000 #0c0c0c #ffffff $inactive_border   $inactive_bor
 
 # startup stuff
 exec --no-startup-id compton
-exec --no-startup-id i3-msg workspace $ws1 && urxvt
+exec_always --no-startup-id i3-msg workspace $ws1 && ~/.scripts/startup_layout
 
 # Start Chromium
 assign [class="Chromium"] $ws2
 exec --no-startup-id chromium
 
-# Start Cava
-assign [title="cava"] $ws3
-exec --no-startup-id urxvt -e cava
-
 # Start mpd
-exec --no-startup-id mpd
+exec --no-startup-id "killall mpd && mpd"
+exec --no-startup-id mpc pause
+
 
 # Start dunst
 exec --no-startup-id dunst
