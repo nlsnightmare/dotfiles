@@ -21,6 +21,7 @@ elif [[ $1 == "showoff" ]]; then
 elif [[ $1 == "off" ]]; then
     $scripts_directory/keyboard "#000000"
     $scripts_directory/strip "#000000"
+    exit
 elif [[ $1 == "crimson" ]]; then
     $scripts_directory/keyboard "#ff0022"
     $scripts_directory/strip "#ff0022"
@@ -57,3 +58,5 @@ else
     $scripts_directory/keyboard "$1"
     hsetroot -tile $wallpapers_directory/pattern.jpg -tint "$1"
 fi
+
+$scripts_directory/strip "M"

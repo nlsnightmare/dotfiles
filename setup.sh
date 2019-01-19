@@ -85,6 +85,11 @@ pacaur -S ${install_targets[*]} --noconfirm --noedit --needed
 
 notify-send "$title" "pacaur finished installing packages!"
 
+sudo sed -i "s/Antergos/Arch/g" /etc/os-release
+sudo sed -i "s/\;extension=mysqli/extension=mysqli/" /etc/php/php.ini
+sudo sed -i "s/\;extension=pdo_mysql/extension=pdo_mysql/" /etc/php/php.ini
+
+
 systemctl enable mariadb.service
 systemctl start  mariadb.service
 
@@ -142,9 +147,8 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
     sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 fi
 
-if [[ ! -f ~/.vim/bunfle/Vundle.vim ]]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 if [[ ! -d ~/.emacs.d ]]; then
     mkdir ~/Documents/Agenda
@@ -156,6 +160,8 @@ if [[ ! -d ~/.fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --all
 fi
+
+nvim +PlugInstall +UpdateRemotePlugins +qa
 
 # restore last dir
 popd > /dev/null

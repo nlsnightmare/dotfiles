@@ -221,16 +221,18 @@ client.placeholder      #000000 #0c0c0c #ffffff $inactive_border   $inactive_bor
 
 # startup stuff
 exec --no-startup-id compton
-exec_always --no-startup-id i3-msg workspace $ws1 && ~/.scripts/startup_layout
+exec --no-startup-id i3-msg workspace $ws1 && ~/.scripts/startup_layout
 
 # Start Chromium
 assign [class="Chromium"] $ws2
 exec --no-startup-id chromium
 
 # Start mpd
-exec --no-startup-id "killall mpd && mpd"
+exec --no-startup-id "killall mpd; mpd"
 exec --no-startup-id mpc pause
 
+# Start Phone server 
+exec --no-startup-id "node ~/Documents/Lights/Server/server.js"
 
 # Start dunst
 exec --no-startup-id dunst
@@ -242,9 +244,6 @@ exec --no-startup-id "xset -dpms"
 
 # hide cursor after a delay
 exec --no-startup-id "unclutter --timeout 3"
-
-
-
 
 # Set language layout
 exec --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,gr"

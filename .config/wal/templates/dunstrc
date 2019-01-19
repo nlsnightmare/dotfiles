@@ -227,9 +227,9 @@
     #foreground = "{color0}"
     #frame_color= "{color2}"
 
-    background = "{background}"
-    foreground = "{color9}"
-    frame_color= "{color2}"
+    background = "{color0}"
+    foreground = "{color3}"
+    frame_color= "{color3}"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon

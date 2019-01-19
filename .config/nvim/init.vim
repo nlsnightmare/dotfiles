@@ -1,7 +1,7 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -11,21 +11,28 @@ Plug 'chrisbra/Colorizer'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
-Plug 'vim-syntastic/syntastic'
+Plug 'jiangmiao/auto-pairs'
+Plug 'easymotion/vim-easymotion'
+Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Shougo/deoplete-clangx'
 Plug 'Shougo/neoinclude.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
+Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
+
+Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ }
+
 call plug#end()
 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -47,17 +54,14 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap gD <Plug>(rust-doc)
 
-let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
-
-let g:deoplete#sources#ternjs#timeout = 0
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+            \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+            \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 call deoplete#enable()
 
@@ -79,8 +83,7 @@ set wildmenu
 set showmatch
 
 set incsearch
-set hlsearch
-
+set nohlsearch
 let mapleader = "\<Space>"
 
 set foldenable
@@ -88,21 +91,40 @@ set foldlevelstart=10
 nnoremap Q <nop>
 set foldmethod=indent
 
+nnoremap =b gg=G``zz
 nnoremap j gj
 nnoremap k gk
 nnoremap L $
 nnoremap H ^
+nnoremap <M-j> :move +1<CR>
+vnoremap <M-j> :move '>+1<CR>gv
+" '
+
+nnoremap <M-k> :move -2<CR>
+vnoremap <M-k> :move -2<CR>gv
 
 nnoremap <tab> za
 nnoremap <C-b> :Buffers<CR>
 nnoremap <C-e> :Files<CR>
-nnoremap <leader>s :Lines<CR>
+nnoremap <leader>S :Lines<CR>
 nnoremap <leader>q :bd<cr>
 nnoremap <leader>Q :bd!<cr>
+nmap <leader>s :set nohlsearch<CR><Plug>(easymotion-sn)
 
-nnoremap <leader>l :SyntasticToggle<cr>
+nmap <leader><leader>sv :source $MYVIMRC<CR>
+nmap <leader><leader>ev :e $MYVIMRC<CR> 
+nmap <leader><leader>pi :PlugInstall<CR>
+nmap <leader><leader>pc :PlugClean<CR>
+nmap <leader><leader>es :vsp<CR>:UltiSnipsEdit<CR>
+cabb W w
+
+
+nnoremap <leader><leader>sz :vsp ~/.zshrc<CR>
+nnoremap <leader><leader>ez :vsp ~/.zshrc<CR>
+
 nnoremap <leader>n :lnext<cr>
 nnoremap <leader>p :lprev<cr>
+let g:EasyMotion_smartcase = 1
 
 
 
@@ -114,13 +136,6 @@ vnoremap H ^
 inoremap kj <esc>
 
 
-" Eval .vimrc
-nnoremap <leader>ev :vsp $MYVIMRC<CR>
-
-" Eval .zshrc
-nnoremap <leader>ez :vsp ~/.zshrc<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>:nohlsearch<CR>
-
 
 " Highlight last inserted text
 nnoremap gV `[v`]
@@ -128,6 +143,9 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType rust setlocal completeopt-=preview
+
+au BufNewFile,BufRead * if &ft == '' | set ft=sh | endif
+au BufNewFile,BufRead ~/.config/i3/config set ft=i3config
 set completeopt=menu,preview,noinsert
 
 
@@ -143,19 +161,34 @@ let g:lightline = { 'colorscheme': 'wal' }
 
 hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 
+let g:AutoPairsFlyMode = 0
+set signcolumn=yes
+call neomake#configure#automake('nrwi', 3000)
+
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
 
 
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+            \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+            \ 'cpp': ['/usr/bin/cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
+            \ 'python': ['/usr/bin/pyls'],
+            \ }
+let g:LanguageClient_loggingLevel = 'DEBUG'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:LanguageClient_hoverPreview='never'
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_definition()<CR>
 
-let g:syntastic_enable_signs=1
+set updatetime=250
+autocmd CursorHold * if LanguageClient#serverStatus() | call LanguageClient#textDocument_hover() | endif 
 
-let g:syntastic_error_symbol = "✗"
-highlight SyntasticErrorLine guifg=white guibg=red
+
+
+" Tern JS
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#case_insensitive = 1
+let g:deoplete#sources#ternjs#guess = 0

@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.scripts/colors
 export PATH=$PATH:~/.scripts/
-export PATH=$PATH:~/.gem/ruby/2.5.0/bin
+export PATH=$PATH:~/.gem/ruby/2.6.0/bin
 export PATH=$PATH:~/.config/composer/vendor/bin
 
 ZSH_THEME="robbyrussell"
@@ -13,6 +13,7 @@ plugins=(
     command-not-found
     last-working-dir
     zsh-autosuggestions
+    laravel5
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -52,6 +53,7 @@ alias p='pacaur'
 alias cl='clear; neofetch'
 alias vim='nvim'
 alias open='xdg-open'
+alias sudo='sudo -E '
 
 
 neofetch
