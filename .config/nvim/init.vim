@@ -164,6 +164,7 @@ hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 let g:AutoPairsFlyMode = 0
 set signcolumn=yes
 call neomake#configure#automake('nrwi', 3000)
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 
 " Required for operations modifying multiple buffers like rename.

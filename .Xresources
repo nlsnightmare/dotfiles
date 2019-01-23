@@ -3,5 +3,7 @@ URxvt*scrollBar: false
 URxvt.font: xft:Iosevka:size=14:antialias=true
 URxvt*depth: 30
 URxvt.transparent: true
+URxvt.letterSpace: 1
+URxvt.lineSpace: 3
 URxvt.shading: 20
 rofi.font: Iosevka 14

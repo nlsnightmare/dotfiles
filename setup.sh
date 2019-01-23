@@ -120,6 +120,7 @@ notify-send "$title" "Rust installed!"
 # Javascript autocompletion
 sudo npm i -g ternjs
 sudo npm i -g live-server
+sudo npm i -g eslint
 
 
 notify-send "$title" "npm packages installed!"
