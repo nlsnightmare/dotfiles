@@ -2,10 +2,13 @@
    "libs": [
      "browser",
      "jquery",
-     "react"
+     "react",
+     "axios",
+     "firebase"
    ],
    "plugins": {
        "doc_comment": null,
+       "es_modules": {},
        "angular": {},
        "node": {}
    }
