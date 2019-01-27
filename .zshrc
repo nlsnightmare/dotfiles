@@ -41,6 +41,7 @@ alias cl='clear; neofetch'
 alias vim='nvim'
 alias open='xdg-open'
 alias sudo='sudo -E '
+alias rtheme='theme --random'
 
 
 neofetch
