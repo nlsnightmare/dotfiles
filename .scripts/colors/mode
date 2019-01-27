@@ -20,43 +20,42 @@ elif [[ $1 == "showoff" ]]; then
 
 elif [[ $1 == "off" ]]; then
     $scripts_directory/keyboard "#000000"
-    $scripts_directory/strip "#000000"
+    $scripts_directory/lstrip "#000000"
     exit
 elif [[ $1 == "crimson" ]]; then
     $scripts_directory/keyboard "#ff0022"
-    $scripts_directory/strip "#ff0022"
+    $scripts_directory/lstrip "#ff0022"
     wal -i ~/Pictures/Cool/crimson.png -b "#0f0d0d" -q
 elif [[ $1 == "red" ]]; then
     $scripts_directory/keyboard "#ff0000"
-    $scripts_directory/strip "#ff0000"
+    $scripts_directory/lstrip "#ff0000"
     hsetroot -full $wallpapers_directory/$1.png
 elif [[ $1 == "green" ]]; then
     $scripts_directory/keyboard "#00FF00"
-    $scripts_directory/strip "#00FF00"
+    $scripts_directory/lstrip "#00FF00"
     wal -i ~/Pictures/Cool/green.png -q
 elif [[ $1 == "blue" ]]; then
     $scripts_directory/keyboard "#0012ff"
-    $scripts_directory/strip "#0012ff"
+    $scripts_directory/lstrip "#0012ff"
     wal -i ~/Pictures/space-2.jpg -q
 elif [[ $1 == "grey" ]]; then
     $scripts_directory/keyboard "#ffffff"
-    $scripts_directory/strip "#ffffff"
+    $scripts_directory/lstrip "#ffffff"
     hsetroot -full $wallpapers_directory/$1.jpg
 elif [[ $1 == "purple" ]]; then
     $scripts_directory/keyboard "#ff03ff"
-    $scripts_directory/strip "#ff03ff"
+    $scripts_directory/lstrip "#ff03ff"
     wal -i ~/Pictures/space.jpg -q
 elif [[ $1 == "rainbow" ]]; then
-    $scripts_directory/strip "R"
+    $scripts_directory/lstrip "R"
     $scripts_directory/keyboard "rainbow"
     wal -i ~/Pictures/Cool/rainbow.jpg -b "#001122" -q
 elif [[ $1 == "ambient" ]]; then
-    $scripts_directory/strip "A"
+    $scripts_directory/lstrip "A"
     $scripts_directory/keyboard "ambient"
 else
-    $scripts_directory/strip "$1"
+    $scripts_directory/lstrip "$1"
     $scripts_directory/keyboard "$1"
-    hsetroot -tile $wallpapers_directory/pattern.jpg -tint "$1"
 fi
 
-$scripts_directory/strip "M"
+$scripts_directory/lstrip "M"
