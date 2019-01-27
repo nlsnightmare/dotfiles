@@ -177,6 +177,7 @@ let g:LanguageClient_serverCommands = {
             \ 'rust': ['rustup', 'run', 'stable', 'rls'],
             \ 'cpp': ['/usr/bin/cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
             \ 'python': ['/usr/bin/pyls'],
+            \ 'vue': ['vls']
             \ }
 let g:LanguageClient_loggingLevel = 'DEBUG'
 
@@ -193,3 +194,27 @@ autocmd CursorHold * if LanguageClient#serverStatus() | call LanguageClient#text
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#case_insensitive = 1
 let g:deoplete#sources#ternjs#guess = 0
+
+
+" Startify
+let g:startify_bookmarks = [ 
+            \ { 'v': '~/.config/nvim/init.vim' },
+            \ { 'i': '~/.config/i3/config' },
+            \ ]
+
+let g:startify_commands = [
+            \ {'U': [ 'Update Plugins', 'PlugUpdate' ]},
+            \ ]
+
+let g:startify_lists = [
+            \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ { 'type': 'files',     'header': ['   MRU']            },
+            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+            \ ]
+
+
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+let g:startify_session_persistence = 1
+let g:startify_change_to_dir = 0
