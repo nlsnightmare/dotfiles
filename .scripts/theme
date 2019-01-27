@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+if [[ $# -ne 1 ]]; then
+    echo "usage: `basename $0` [ file | -r ]"
+    exit 1
+fi
+
+if [[ $1 == '-r' ]] || [[ $1 == '--random' ]]; then
+    path=`find ~/Pictures/ | sort -R | tail -1`
+else
+    path=$1
+fi
+
+wal -i "$path" > /dev/null 2>&1
+
+if [[ $? -ne 0 ]]; then
+    echo "Couldn't generate pallete for '$path'"  
+    echo "Delete it? (y/N)"
+    read -sn1 opt
+    if [[ $opt == 'Y' ]] || [[ $opt == 'y' ]]; then
+        rm "$path";
+        $0 -r
+    fi
+    exit;
+fi
+
+pkill -USR1 cava
+killall dunst &> /dev/null
+dunst &> /dev/null &
+
+col=`xrdb -query | grep color3 | tail -n1 | cut -d '#' -f2 | tr '[A-F]' '[a-f]'`
+keyboard "#$col"
+lstrip "#$col"
+
+echo "primary color: $col"
+
+clear
+neofetch 
+
+notify-send "Theme Changed!"
