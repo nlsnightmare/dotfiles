@@ -28,10 +28,6 @@ HYPHEN_INSENSITIVE="true"
 # Make ranger use nvim
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
-function ins {
-    pacaur -S $(pacaur -Ssq $1 | fzf)
-}
-
 function y-song {
     youtube-dl -x --audio-format mp3 $1
 }
