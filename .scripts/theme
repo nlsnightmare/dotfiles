@@ -6,7 +6,7 @@ if [[ $# -ne 1 ]]; then
 fi
 
 if [[ $1 == '-r' ]] || [[ $1 == '--random' ]]; then
-    path=`find ~/Pictures/ | sort -R | tail -1`
+    path=`find ~/Pictures/ -not -path ~/Pictures/Screenshots/* | sort -R | tail -1`
 else
     path=$1
 fi
@@ -28,11 +28,13 @@ pkill -USR1 cava
 killall dunst &> /dev/null
 dunst &> /dev/null &
 
+# OG
 col=`xrdb -query | grep color3 | tail -n1 | cut -d '#' -f2 | tr '[A-F]' '[a-f]'`
 keyboard "#$col"
 lstrip "#$col"
 
 echo "primary color: $col"
+exit
 
 clear
 neofetch 
