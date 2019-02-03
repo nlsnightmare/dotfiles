@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
+if [[ $1 == "" ]] || [[ $# -ne 1 ]]; then
+    echo "error: no input specified"
+    exit
+fi
+
 package=$(pacaur -Ssq $1 | fzf)
+if [[ $package == "" ]]; then
+    exit
+fi
 echo "Enter description for package $package: "
 read -e desc
 line="        $package # $desc"

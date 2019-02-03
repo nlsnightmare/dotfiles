@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+package=$( pacaur -Qqe | fzf )
+pacaur -Rns $package
+
+if [[ $? -ne 0 ]] || [[ $1 != "-s" ]]; then
+    exit
+fi
+
+sed -i "/$package/d" ~/.scripts/setup
