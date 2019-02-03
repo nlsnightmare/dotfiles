@@ -78,6 +78,7 @@ export install_targets=(
         mpd              # Music Player Daemon
         mpc              # MPD CLI client
         ncmpcpp          # MPD client 
+        normalize        # Normalize audio
 )
 
 pacaur -S ${install_targets[*]} --noconfirm --noedit --needed
