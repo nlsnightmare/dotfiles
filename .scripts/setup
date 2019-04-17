@@ -70,6 +70,8 @@ export install_targets=(
         cmake 
 
         # Misc
+        android-studio # Create android apps
+        urxvt-resize-font-git # Change urxvt font size on the fly
         youtube-dl-git   # Download from youtube
         sl               # Yay! trains!
         tree             # Shows a tree of things

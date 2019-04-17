@@ -16,14 +16,19 @@ Plug 'easymotion/vim-easymotion'
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'adelarsq/vim-matchit'
 
+Plug 'diepm/vim-rest-console'
 Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'Shougo/deoplete-clangx'
+
+" looks like it's not needed
+" Plug 'Shougo/deoplete-clangx' 
+
 Plug 'Shougo/neoinclude.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
@@ -41,7 +46,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetsDir="~/.config/nvim/snippets/"
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/snippets/']
 
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
 
 autocmd FileType rust nmap <buffer> <leader>t :RustTest<CR>
@@ -163,7 +168,14 @@ hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 
 let g:AutoPairsFlyMode = 0
 set signcolumn=yes
+
 call neomake#configure#automake('nrwi', 3000)
+let g:neomake_cpp_enabled_makers = ['clang']
+let g:neomake_cpp_clang_maker = {
+   \ 'exe': 'clang++',
+   \ 'args': ['-Wall', '-Iinclude', '-Wextra', '-Weverything', '-pedantic', '-Wno-sign-conversion' ,'-Wno-c++98-compat', '-Wnognu-designator'],
+   \ }
+
 let g:neomake_javascript_enabled_makers = ['eslint']
 
 
@@ -175,18 +187,25 @@ set hidden
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
             \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-            \ 'cpp': ['/usr/bin/cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
             \ 'python': ['/usr/bin/pyls'],
-            \ 'vue': ['vls']
+            \ 'cpp': ['/usr/bin/cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
+            \ 'typescript': ['/usr/bin/javascript-typescript-stdio'],
+            \ 'vue': ['vls'],
+            \ 'cs': ['/opt/omnisharp-roslyn/OmniSharp.exe', '-lsp']
             \ }
-let g:LanguageClient_loggingLevel = 'DEBUG'
 
-let g:LanguageClient_hoverPreview='never'
+let g:LanguageClient_rootMarkers = {
+    \ 'cs': ['.git', '*.csproj'],
+\ }
+
+let g:LanguageClient_loggingLevel = 'ERROR'
+let g:LanguageClient_windowLogMessageLevel = 'Error'
+let g:LanguageClient_hoverPreview='Always'
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_definition()<CR>
 
-set updatetime=250
-autocmd CursorHold * if LanguageClient#serverStatus() | call LanguageClient#textDocument_hover() | endif 
+set updatetime=500
+" autocmd CursorHold * if LanguageClient_runSync('LanguageClient#isAlive') | call LanguageClient#textDocument_hover() | endif 
 
 
 
@@ -215,6 +234,7 @@ let g:startify_lists = [
 
 
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 let g:startify_session_persistence = 1
 let g:startify_change_to_dir = 0
+
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")

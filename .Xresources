@@ -6,4 +6,7 @@ URxvt.transparent: true
 URxvt.letterSpace: 1
 URxvt.lineSpace: 3
 URxvt.shading: 20
+URxvt.perl-ext-common: default,matcher,resize-font
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
 rofi.font: Iosevka 14

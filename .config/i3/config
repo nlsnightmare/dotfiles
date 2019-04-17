@@ -175,9 +175,9 @@ exec --no-startup-id "xrandr --output DP-1 --mode 1600x900"
 font pango:DejaVu Sans Mono bold 12
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +5% && notify-send ' volume up'"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -5% && notify-send ' volume down'"
-bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle && notify-send ' mute'"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set 'Master' 5%+ && notify-send 'volume up'"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set 'Master' 5%- && notify-send 'volume down'"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle && notify-send 'mute'"
 
 # Media player controls
 bindsym XF86AudioPlay exec mpc toggle
@@ -191,7 +191,7 @@ default_border pixel 2
 gaps inner 10
 smart_gaps on
 
-bindsym Print exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+bindsym Print --release exec "scrot ~/Pictures/Screenshots/Screenshot%Y-%m-%d%H:%M:%S.png"
 
 
 for_window [class="retroarch"] fullscreen enable
@@ -221,7 +221,12 @@ client.placeholder      #000000 #0c0c0c #ffffff $inactive_border   $inactive_bor
 
 # startup stuff
 exec --no-startup-id compton
-exec_always --no-startup-id i3-msg workspace $ws1 && ~/.scripts/startup_layout
+exec --no-startup-id i3-msg workspace $ws1 && ~/.scripts/startup_layout
+
+
+# Start Discord
+assign [class="discord"] $ws5
+exec --no-startup-id discord
 
 # Start Chromium
 assign [class="Chromium"] $ws2
@@ -232,10 +237,23 @@ exec --no-startup-id "killall mpd; mpd"
 exec --no-startup-id mpc pause
 
 # Start Phone server 
-exec --no-startup-id "node ~/Documents/Lights/Server/server.js"
+exec_always --no-startup-id "node ~/Documents/Lights/Server/server.js"
 
-# Start dunst
-exec --no-startup-id dunst
+exec_always --no-startup-id "~/.scripts/theme -r"
+exec_always --no-startup-id "~/.scripts/dunst-start"
+
+# Steam settings
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - Update News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+
+assign [class="^Steam$"] $ws6
+exec --no-startup-id "steam"
 
 
 # disable idle screen off
@@ -249,5 +267,4 @@ exec --no-startup-id "unclutter --timeout 3"
 exec --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle' -layout us,gr"
 exec --no-startup-id numlockx # set numlock to active
 
-exec --no-startup-id "wal -i `find ~/Pictures | sort -R | tail -1`"
-exec_always --no-startup-id "notify-send 'i3wm' 'Reloaded successfully '" 
+exec_always --no-startup-id "notify-send 'i3wm' 'Reloaded successfully '"
