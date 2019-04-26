@@ -13,6 +13,7 @@ plugins=(
     command-not-found
     last-working-dir
     zsh-autosuggestions
+    zsh-syntax-highlighting
     laravel5
 )
 
