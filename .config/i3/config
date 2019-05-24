@@ -32,7 +32,7 @@ bindsym $mod+Return exec st
 bindsym $mod+F1 exec chromium
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start rofi
 bindsym $mod+d exec "rofi -show run"
@@ -99,7 +99,7 @@ set $ws2 "2:"
 set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
-set $ws6 "6:"
+set $ws6 "6:"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9:"
@@ -187,7 +187,7 @@ bindsym XF86AudioPrev exec mpc prev
 
 title_align center
 
-default_border pixel 2
+default_border pixel 1
 hide_edge_borders both
 gaps inner 8
 smart_gaps on
