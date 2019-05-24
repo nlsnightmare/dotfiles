@@ -6,7 +6,7 @@ if [[ $# -ne 1 ]]; then
 fi
 
 if [[ $1 == '-r' ]] || [[ $1 == '--random' ]]; then
-    path=`find ~/Pictures/ -not -path "$HOME/Pictures/Screenshots*" | sort -R | tail -1`
+    path=`find ~/Pictures/ ! -path "$HOME/Pictures/Screenshots*" ! -path "$HOME/Pictures/memes*" | sort -R | tail -1`
 else
     path=$1
 fi

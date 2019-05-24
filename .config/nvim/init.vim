@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
 Plug 'dylanaraps/wal.vim'
 Plug 'chrisbra/Colorizer'
+Plug 'sinetoami/lightline-neomake'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
@@ -25,9 +26,6 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-
-" looks like it's not needed
-" Plug 'Shougo/deoplete-clangx' 
 
 Plug 'Shougo/neoinclude.vim'
 Plug 'rust-lang/rust.vim'
@@ -164,12 +162,22 @@ colorscheme wal
 hi CursorLineNr guibg=#ff0000
 let g:lightline = { 'colorscheme': 'wal' }
 
+let g:neomake_highlight_lines = 1
+let g:airline#extensions#neomake#enabled=1
+let g:lightline = {
+      \ 'colorscheme': 'wal',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'statusline' ] ]
+      \ },
+      \ } 
+call neomake#configure#automake('nrwi', 500)
 hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
 
 let g:AutoPairsFlyMode = 0
 set signcolumn=yes
 
-call neomake#configure#automake('nrwi', 3000)
+" call neomake#configure#automake('nrwi', 3000)
 let g:neomake_cpp_enabled_makers = ['clang']
 let g:neomake_cpp_clang_maker = {
    \ 'exe': 'clang++',
@@ -217,6 +225,7 @@ let g:deoplete#sources#ternjs#guess = 0
 
 " Startify
 let g:startify_bookmarks = [ 
+            \ { 'z': '~/.zshrc' },
             \ { 'v': '~/.config/nvim/init.vim' },
             \ { 'i': '~/.config/i3/config' },
             \ ]
@@ -238,3 +247,6 @@ let g:startify_session_persistence = 1
 let g:startify_change_to_dir = 0
 
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+
+autocmd FileReadPost * :Neomake

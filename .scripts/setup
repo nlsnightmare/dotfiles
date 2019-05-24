@@ -172,3 +172,5 @@ nvim +PlugInstall +UpdateRemotePlugins +qa
 
 # restore last dir
 popd > /dev/null
+echo "done! however, some things are not installed."
+echo "namely: st, dwm, dmenu"

@@ -1,5 +1,6 @@
+*.alpha: 0.9
+*.color0: color0
 URxvt*scrollBar: false
-! URxvt.font: xft:DejaVuSansMono:12
 URxvt.font: xft:Iosevka:size=14:antialias=true
 URxvt*depth: 30
 URxvt.transparent: true

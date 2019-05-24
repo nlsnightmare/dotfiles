@@ -1,4 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
+export PATH=$PATH:.
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.scripts/colors
 export PATH=$PATH:~/.scripts/
@@ -33,13 +34,32 @@ function y-song {
     youtube-dl -x --audio-format mp3 $1
 }
 
+function mkcd {
+    if [[ $# -ne 1 ]]; then
+        echo "error: no name."
+        return 1
+    fi
+
+    mkdir $1 && cd $1
+}
+
+function google {
+    if [[ $# -eq 0 ]]; then
+        url="htpps://google.com"
+    else 
+        url="https://google.com/search?q=$@"
+    fi
+
+    xdg-open $url
+}
+
 alias p='pacaur'
 alias cl='clear; neofetch'
 alias vim='nvim'
 alias open='xdg-open'
 alias sudo='sudo -E '
 alias rtheme='theme --random'
-
+# alias dmenu='rofi -dmenu'
 
 neofetch
 
