@@ -1,10 +1,10 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugins')
 Plug 'VundleVim/Vundle.vim'
 Plug 'dylanaraps/wal.vim'
 Plug 'chrisbra/Colorizer'
@@ -228,6 +228,7 @@ let g:startify_bookmarks = [
             \ { 'z': '~/.zshrc' },
             \ { 'v': '~/.config/nvim/init.vim' },
             \ { 'i': '~/.config/i3/config' },
+            \ { 'x': '~/.Xresources' },
             \ ]
 
 let g:startify_commands = [
