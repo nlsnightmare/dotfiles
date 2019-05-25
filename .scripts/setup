@@ -1,18 +1,27 @@
 #!/bin/bash
 pushd ~ > /dev/null
 
-
 title="Install Script"
 
 # Install pacaur for AUR
-sudo pacman -S pacaur --needed 
+sudo pacman -S yay --needed 
 
-notify-send "$title" "Installed pacaur"
+notify-send "$title" "Installed yay"
 
 # Update the system packages
-pacaur -Syu # Update
+yay -Syu # Update
 
 notify-send "$title" "Updated packages!"
+
+if [[ `command -v st` == "" ]]; then
+    git clone https://github.com/nlsnightmare/st
+    cd st
+    sudo make install
+    cd ..
+    rm -rf st
+
+    notify-send "$title" "st installed!"
+fi
 
 export install_targets=(
         # Windows manager
@@ -28,11 +37,11 @@ export install_targets=(
         rxvt-unicode-pixbuf# Terminal emulator
         zsh                # Zsh shell
         feh                # Change desktop background
-        rofi               # Application launcher
+        dmenu2             # Application launcher
+        rofi               # Another Application launcher
         ttf-font-awesome   # Icons for workspaces and more
         cava               # Terminal-based visualizer
         playerctl          # Controll music from the terminal
-        cmus               # CLI music player
         w3m                # Display images on terminal
         numlockx           # Enable nums lock on startup
         polybar            # Better status bar
@@ -48,45 +57,37 @@ export install_targets=(
         razercommander-git # Needed for Razer Keyboard Color control
         linux-headers      # Needed for Razer Keyboard Color control
 
-        hsetroot           # Tile, tint wallpapers & more
-
         # Programming
         rustup             # Rustlang
-        nodejs
-        npm
-        composer
+        nodejs             # Javascript
+        npm                # Javascript
+        composer           # PHP
 
         # Services
         systemctl
         mariadb
         apache
 
-        # Ruby
-        ruby              
-        ruby-docs
-        ruby-rdoc
-
+        # C/C++
         clang
         cmake 
 
         # Misc
-        android-studio # Create android apps
-        urxvt-resize-font-git # Change urxvt font size on the fly
-        youtube-dl-git   # Download from youtube
+        aseprite         # Pixel Art Editor
         sl               # Yay! trains!
         tree             # Shows a tree of things
         ranger-git       # CLI file browser
-        krita            # Image editor
         mpd              # Music Player Daemon
         mpc              # MPD CLI client
         ncmpcpp          # MPD client 
         normalize        # Normalize audio
 )
 
-pacaur -S ${install_targets[*]} --noconfirm --noedit --needed
+yay -S ${install_targets[*]} --noconfirm --needed
 
 
 notify-send "$title" "pacaur finished installing packages!"
+exit
 
 sudo sed -i "s/Antergos/Arch/g" /etc/os-release
 sudo sed -i "s/\;extension=mysqli/extension=mysqli/" /etc/php/php.ini
@@ -139,13 +140,6 @@ sudo pip install pyserial
 
 notify-send "$title" "pip packages installed!"
 
-# Install jekyll
-gem update
-gem install jekyll bundler
-
-notify-send "$title" "Jekyll installed!"
-
-
 # requires user input
 if [[ ! -d ~/.oh-my-zsh ]]; then
     sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
@@ -153,9 +147,6 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
     cd ~/.oh-my-zsh/custom/plugins
     git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 fi
-
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 if [[ ! -d ~/.emacs.d ]]; then
     mkdir ~/Documents/Agenda
@@ -172,5 +163,4 @@ nvim +PlugInstall +UpdateRemotePlugins +qa
 
 # restore last dir
 popd > /dev/null
-echo "done! however, some things are not installed."
-echo "namely: st, dwm, dmenu"
+notify-send "$title" "install finised!"
