@@ -1,5 +1,7 @@
-*.alpha: 0.9
-*.color0: color0
+dmenu.font: xft:CallingCode:size=16:antialias=true
+st.alpha: 0.9
+st.color0: #000000
+
 URxvt*scrollBar: false
 URxvt.font: xft:Iosevka:size=14:antialias=true
 URxvt*depth: 30
@@ -10,4 +12,5 @@ URxvt.shading: 20
 URxvt.perl-ext-common: default,matcher,resize-font
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
+
 rofi.font: Iosevka 14
