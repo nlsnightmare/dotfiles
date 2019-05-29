@@ -118,6 +118,8 @@ nmap <leader><leader>sv :source $MYVIMRC<CR>
 nmap <leader><leader>ev :e $MYVIMRC<CR> 
 nmap <leader><leader>pi :PlugInstall<CR>
 nmap <leader><leader>pc :PlugClean<CR>
+nmap <leader><leader>pu :PlugUpdate<CR>
+nmap <leader><leader>pU :PlugUpgrade<CR>
 nmap <leader><leader>es :vsp<CR>:UltiSnipsEdit<CR>
 cabb W w
 
