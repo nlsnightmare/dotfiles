@@ -1,12 +1,31 @@
-#!/bin/bash
+#!/bin/bash --noconfirm
 pushd ~ > /dev/null
 
 title="Install Script"
 
-# Install pacaur for AUR
-sudo pacman -S yay --needed 
 
-notify-send "$title" "Installed yay"
+# requires user input
+if [[ ! -d ~/.oh-my-zsh ]]; then
+    sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+    cd ~/.oh-my-zsh/custom/plugins
+    git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+    git clone https://github.com/zsh-users/zsh-completions
+
+    sudo chsh -s $( which zsh )
+    notify-send "$title" "Installed zsh and oh-my-zsh!"
+fi
+
+if [[ `command -v yay` == "" ]]; then
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+    cp completions/zsh ~/.oh-my-zsh/custom/plugins/zsh-completions/src/_yay
+    cd ../
+    rm -rf yay
+    notify-send "$title" "Installed yay"
+fi
+
 
 # Update the system packages
 yay -Syu # Update
@@ -87,7 +106,6 @@ yay -S ${install_targets[*]} --noconfirm --needed
 
 
 notify-send "$title" "pacaur finished installing packages!"
-exit
 
 sudo sed -i "s/Antergos/Arch/g" /etc/os-release
 sudo sed -i "s/\;extension=mysqli/extension=mysqli/" /etc/php/php.ini
@@ -140,14 +158,6 @@ sudo pip install pyserial
 
 notify-send "$title" "pip packages installed!"
 
-# requires user input
-if [[ ! -d ~/.oh-my-zsh ]]; then
-    sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-
-    cd ~/.oh-my-zsh/custom/plugins
-    git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
-fi
-
 if [[ ! -d ~/.emacs.d ]]; then
     mkdir ~/Documents/Agenda
     git clone https://github.com/nlsnightmare/.emacs.d
@@ -163,4 +173,4 @@ nvim +PlugInstall +UpdateRemotePlugins +qa
 
 # restore last dir
 popd > /dev/null
-notify-send "$title" "install finised!"
+notify-send "$title" "Install Finised!"
