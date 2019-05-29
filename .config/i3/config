@@ -13,7 +13,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 25 
+font pango:DejaVu Sans Mono 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -100,8 +100,8 @@ set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:"
-set $ws7 "7"
-set $ws8 "8"
+set $ws7 "7:"
+set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:"
 
@@ -221,7 +221,7 @@ client.placeholder      #000000 #0c0c0c #ffffff $inactive_border   $inactive_bor
 
 
 # startup stuff
-exec --no-startup-id compton
+exec --no-startup-id "compton"
 exec --no-startup-id i3-msg workspace $ws1 && ~/.scripts/startup_layout
 
 
