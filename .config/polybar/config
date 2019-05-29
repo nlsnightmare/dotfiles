@@ -60,7 +60,6 @@ module-margin-right = 1
 ; font-0 = Iosevka:pixelsize=14:antialias=true;1
 ; font-0 = DeJaVu Sans Mono:pixelsize=14:antialias=true;1
 font-0 = Iosevka:pixelsize=14:antialias=true;1
-
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = "FontAwesome:fontformat=truetype:pixelsize=12;3"
