@@ -16,8 +16,9 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     laravel5
+    zsh-completions
 )
-
+autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
 COMPLETION_WAITING_DOTS="false"
@@ -53,7 +54,7 @@ function google {
     xdg-open $url
 }
 
-alias p='pacaur'
+alias p='yay'
 alias cl='clear; neofetch'
 alias vim='nvim'
 alias open='xdg-open'
