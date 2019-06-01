@@ -175,9 +175,9 @@ exec --no-startup-id "xrandr --output DP-1 --mode 1600x900"
 font pango:DejaVu Sans Mono bold 16
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set 'Master' 5%+ && notify-send 'volume up'"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set 'Master' 5%- && notify-send 'volume down'"
-bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle && notify-send 'mute'"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set 'Master' 5%+"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set 'Master' 5%-"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle"
 
 # Media player controls
 bindsym XF86AudioPlay exec mpc toggle
