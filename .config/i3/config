@@ -28,7 +28,6 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec st
 
-
 bindsym $mod+F1 exec chromium
 
 # kill focused window
