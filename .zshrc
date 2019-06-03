@@ -41,7 +41,7 @@ function mkcd {
         return 1
     fi
 
-    mkdir $1 && cd $1
+    mkdir -p $1 && cd $1
 }
 
 function google {
@@ -57,9 +57,12 @@ function google {
 alias p='yay'
 alias cl='clear; neofetch'
 alias vim='nvim'
+alias v='nvim'
 alias open='xdg-open'
 alias sudo='sudo -E '
 alias rtheme='theme --random'
+alias ls='ls -h --color=auto --group-directories-first'
+alias starwars='telnet towel.blinkenlights.nl'
 # alias dmenu='rofi -dmenu'
 
 neofetch
