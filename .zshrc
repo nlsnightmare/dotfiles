@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:.
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.scripts/colors
 export PATH=$PATH:~/.scripts/
