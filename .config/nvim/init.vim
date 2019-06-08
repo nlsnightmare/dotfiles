@@ -19,15 +19,18 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'adelarsq/vim-matchit'
 
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'diepm/vim-rest-console'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-
+let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neoinclude.vim'
+
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'rust-lang/rust.vim'
 Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
 
@@ -38,18 +41,33 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 call plug#end()
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsSnippetsDir="~/.config/nvim/snippets/"
-let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/snippets/']
+
+let g:neosnippet#expand_word_boundary = 1
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <expr><tab>
+ \ neosnippet#expandable_or_jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" :
+ \ emmet#isExpandable() ? "\<C-y>," :
+ \ pumvisible() ? "\<C-n>" :
+ \ "\<tab>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 let g:rustfmt_autosave = 0
 let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
 
 autocmd FileType rust nmap <buffer> <leader>t :RustTest<CR>
 autocmd FileType rust nmap <buffer> <leader>T :RustTest!<CR>
-" autocmd FileType rust nmap <buffer> <leader>r :RustRun<CR>
 autocmd FileType rust nmap <buffer> <leader>r :!cargo run<CR>
 autocmd FileType rust nmap <buffer> <leader>f :RustFmt<CR>
 au FileType rust nmap gd <Plug>(rust-def)
@@ -146,12 +164,12 @@ inoremap kj <esc>
 nnoremap gV `[v`]
 nnoremap <leader><space> :nohlsearch<CR>
 
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType rust setlocal completeopt-=preview
+" autocmd FileType python setlocal completeopt-=preview
+" autocmd FileType rust setlocal completeopt-=preview
 
 au BufNewFile,BufRead * if &ft == '' | set ft=sh | endif
 au BufNewFile,BufRead ~/.config/i3/config set ft=i3config
-set completeopt=menu,preview,noinsert
+set completeopt=menu,menuone,longest,noinsert
 
 
 set nowrap
@@ -249,7 +267,6 @@ autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript
 let g:startify_session_persistence = 1
 let g:startify_change_to_dir = 0
 
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 
 autocmd FileReadPost * :Neomake
