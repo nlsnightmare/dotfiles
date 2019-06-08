@@ -6,8 +6,8 @@ snippet dst "declare(strict_types=1)"
 	declare(strict_types=${1:1});
 snippet ec
 	echo ${0};
-snippet <?e
-	<?php echo ${0} ?>
+snippet ?e
+	<?php echo ${1} ?>$0
 # this one is for php5.4
 snippet <?=
 	<?=${0}?>
@@ -39,7 +39,7 @@ snippet i
 	}
 snippet t.
 	$this->
-snippet f
+snippet fn
 	function ${1}(${3})
 	{
 		${0:${VISUAL}}
