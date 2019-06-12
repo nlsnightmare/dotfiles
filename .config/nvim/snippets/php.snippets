@@ -89,36 +89,36 @@ snippet t "$retVal = (condition) ? a : b"
 	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};
 # Predefined variables
 snippet C
-	$_COOKIE['${1:variable}']
+	$_COOKIE['${1:variable}']$0
 snippet E
-	$_ENV['${1:variable}']
+	$_ENV['${1:variable}']$0
 snippet F
-	$_FILES['${1:variable}']
+	$_FILES['${1:variable}']$0
 snippet G "_GET array"
-	$_GET['${1:variable}']
+	$_GET['${1:variable}']$0
 snippet P "_POST array"
-	$_POST['${1:variable}']
+	$_POST['${1:variable}']$0
 snippet R
-	$_REQUEST['${1:variable}']
+	$_REQUEST['${1:variable}']$0
 snippet S
-	$_SERVER['${1:variable}']
+	$_SERVER['${1:variable}']$0
 snippet SS
-	$_SESSION['${1:variable}']
+	$_SESSION['${1:variable}']$0
 snippet get "get"
-	$_GET['${1}']
+	$_GET['${1}']$0
 snippet post "post"
-	$_POST['${1}']
+	$_POST['${1}']$0
 snippet session "session"
-	$_SESSION['${1}']
+	$_SESSION['${1}']$0
 # the following are old ones
 snippet inc
-	include '${1:file}';
+	include '${1:file}';$0
 snippet inc1
-	include_once '${1:file}';
+	include_once '${1:file}';$0
 snippet req
-	require '${1:file}';
+	require '${1:file}';$0
 snippet req1
-	require_once '${1:file}';
+	require_once '${1:file}';$0
 # Start Docblock
 snippet /*
 	/**
@@ -292,7 +292,7 @@ snippet ifn "if (!condition) { ... }"
 	if (!${1}) {
 		${0:${VISUAL}}
 	}
-snippet ifil "<?php if (condition): ?> ... <?php endif; ?>"
+snippet ?i "<?php if (condition): ?> ... <?php endif; ?>"
 	<?php if (${1}): ?>
 		${0:${VISUAL}}
 	<?php endif; ?>
@@ -302,7 +302,7 @@ snippet ife "if (cond) { ... } else { ... }"
 	} else {
 		${2}
 	}
-snippet ifeil "<?php if (condition): ?> ... <?php else: ?> ... <?php endif; ?>"
+snippet ?ie "<?php if (condition): ?> ... <?php else: ?> ... <?php endif; ?>"
 	<?php if (${1}): ?>
 		${0:${VISUAL}}
 	<?php else: ?>

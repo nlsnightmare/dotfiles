@@ -14,25 +14,32 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-commentary'
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'adelarsq/vim-matchit'
 
+" easily align text
+" https://vimawesome.com/plugin/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'diepm/vim-rest-console'
-" Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
+
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neoinclude.vim'
 
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'rust-lang/rust.vim'
 Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
+Plug '2072/PHP-Indenting-for-VIm'
+Plug 'captbaritone/better-indent-support-for-php-with-html'
 
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
@@ -41,12 +48,19 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 call plug#end()
 
-
+let g:php_html_load = 1
 let g:neosnippet#expand_word_boundary = 1
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 imap <expr><tab>
+ \ neosnippet#expandable_or_jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" :
+ \ emmet#isExpandable() ? "\<C-y>," :
+ \ pumvisible() ? "\<C-n>" :
+ \ "\<tab>"
+
+
+smap <expr><tab>
  \ neosnippet#expandable_or_jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" :
  \ emmet#isExpandable() ? "\<C-y>," :
  \ pumvisible() ? "\<C-n>" :
@@ -66,14 +80,6 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 let g:rustfmt_autosave = 0
 let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
 
-autocmd FileType rust nmap <buffer> <leader>t :RustTest<CR>
-autocmd FileType rust nmap <buffer> <leader>T :RustTest!<CR>
-autocmd FileType rust nmap <buffer> <leader>r :!cargo run<CR>
-autocmd FileType rust nmap <buffer> <leader>f :RustFmt<CR>
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap gD <Plug>(rust-doc)
 
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -94,8 +100,7 @@ set softtabstop=4
 set shiftwidth=4
 set number relativenumber
 set showcmd
-" set cursorline
-
+set tildeop
 filetype indent on
 set smartcase
 set ignorecase
@@ -164,11 +169,6 @@ inoremap kj <esc>
 nnoremap gV `[v`]
 nnoremap <leader><space> :nohlsearch<CR>
 
-" autocmd FileType python setlocal completeopt-=preview
-" autocmd FileType rust setlocal completeopt-=preview
-
-au BufNewFile,BufRead * if &ft == '' | set ft=sh | endif
-au BufNewFile,BufRead ~/.config/i3/config set ft=i3config
 set completeopt=menu,menuone,longest,noinsert
 
 
@@ -188,7 +188,10 @@ let g:lightline = {
       \ 'colorscheme': 'wal',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'statusline' ] ]
+      \             [ 'readonly', 'filename', 'modified', 'statusline' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype'] ]
       \ },
       \ } 
 call neomake#configure#automake('nrwi', 500)
@@ -209,8 +212,6 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 
 " Required for operations modifying multiple buffers like rename.
 set hidden
-
-
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
@@ -233,8 +234,6 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_definition()<CR>
 
 set updatetime=500
-" autocmd CursorHold * if LanguageClient_runSync('LanguageClient#isAlive') | call LanguageClient#textDocument_hover() | endif 
-
 
 
 " Tern JS
@@ -263,10 +262,25 @@ let g:startify_lists = [
             \ ]
 
 
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript
 let g:startify_session_persistence = 1
 let g:startify_change_to_dir = 0
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 
 autocmd FileReadPost * :Neomake
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript
+autocmd BufNewFile,BufRead * if &ft == '' | set ft=sh | endif
+autocmd BufNewFile,BufRead ~/.config/i3/config set ft=i3config
+autocmd FileType rust nmap <buffer> <leader>t :RustTest<CR>
+autocmd FileType rust nmap <buffer> <leader>T :RustTest!<CR>
+autocmd FileType rust nmap <buffer> <leader>r :!cargo run<CR>
+autocmd FileType rust nmap <buffer> <leader>f :RustFmt<CR>
+autocmd FileType rust nmap gd <Plug>(rust-def)
+autocmd FileType rust nmap gs <Plug>(rust-def-split)
+autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
+autocmd FileType rust nmap gD <Plug>(rust-doc)
