@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+if [[ $MPD_PLAYER_STATE == 'pause' ]]; then
+    notify-send "ncmpcpp" $MPD_PLAYER_STATE
+else
+    artist=`mpc status -f "%artist%" | head -n 1`
+    title=`mpc status -f "%title%" | head -n 1`
+    notify-send "$artist" "$title"
+fi
+

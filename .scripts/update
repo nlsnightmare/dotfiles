@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "do you want to update? [Y/n]"
+read option
+
+if [[ $option == "n" || $option == "N" ]]; then
+    exit;
+fi
+
+nvim +PluginUpdate +qa
+pacaur -Syu

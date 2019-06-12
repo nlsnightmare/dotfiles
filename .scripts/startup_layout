@@ -1,0 +1,7 @@
+#!/bin/bash
+i3-msg "append_layout /home/archangel/.config/i3/layout.json"
+urxvt & 
+sleep 0.2
+urxvt -e ncmpcpp &
+sleep 0.2
+urxvt -e cava &

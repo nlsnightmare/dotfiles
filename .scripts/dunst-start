@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+
+pid=`dunst 2>&1 | cut -d "'" -f4 &`
+if [[ $pid -eq 0 ]]; then
+    exit
+fi
+kill -9 $pid
+dunst &
