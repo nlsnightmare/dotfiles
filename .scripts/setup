@@ -1,4 +1,4 @@
-#!/bin/bash --noconfirm
+#!/bin/bash
 pushd ~ > /dev/null
 
 title="Install Script"
@@ -16,9 +16,8 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
     notify-send "$title" "Installed zsh and oh-my-zsh!"
 fi
 
-if [[ `command -v yay` == "" ]]; then
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
+if [[ `command -v yay` ]]; then
+    git clone https://aur.archlinux.org/yay.git && cd yay
     makepkg -si --noconfirm
     cp completions/zsh ~/.oh-my-zsh/custom/plugins/zsh-completions/src/_yay
     cd ../
@@ -28,13 +27,12 @@ fi
 
 
 # Update the system packages
-yay -Syu # Update
+yay -Syyu --noconfirm
 
 notify-send "$title" "Updated packages!"
 
-if [[ `command -v st` == "" ]]; then
-    git clone https://github.com/nlsnightmare/st
-    cd st
+if [[ `command -v st` ]]; then
+    git clone https://github.com/nlsnightmare/st && cd st
     sudo make install
     cd ..
     rm -rf st
@@ -43,73 +41,71 @@ if [[ `command -v st` == "" ]]; then
 fi
 
 export install_targets=(
-        # Windows manager
-        i3-gaps
+        bspwm               # Windows manager
+        sxhkd               # Keyboard manager
 
         # Editors
-        neovim             # NeoVim
-        xclip
-        emacs            # Emacs
+        neovim              # NeoVim
+        xclip               # X clipboard for Vim
+        emacs               # Emacs
 
         # Theaming
-        neofetch           # Display system info on terminal
-        rxvt-unicode-pixbuf# Terminal emulator
-        zsh                # Zsh shell
-        feh                # Change desktop background
-        dmenu2             # Application launcher
-        rofi               # Another Application launcher
-        ttf-font-awesome   # Icons for workspaces and more
-        cava               # Terminal-based visualizer
-        playerctl          # Controll music from the terminal
-        w3m                # Display images on terminal
-        numlockx           # Enable nums lock on startup
-        polybar            # Better status bar
-        arduino            # Arduino
-        python-pywal       # Generate colorscheme from images
-        notify-send        # Create notifications
-        compton            # Transparency and more
-        unclutter          # Hide mouse when idle
-        dunst
+        neofetch            # Display system info on terminal
+        zsh                 # Zsh shell
+        feh                 # Change desktop background
+        dmenu2              # Application launcher
+        rofi                # Another Application launcher
+        ttf-font-awesome    # Icons for workspaces and more
+        cava                # Terminal-based visualizer
+        playerctl           # Controll music from the terminal
+        w3m                 # Display images on terminal
+        numlockx            # Enable nums lock on startup
+        polybar             # Better status bar
+        arduino             # Arduino
+        python-pywal        # Generate colorscheme from images
+        notify-send         # Create notifications
+        compton             # Transparency and more
+        unclutter           # Hide mouse when idle
+        dunst               # Notification Server
 
-    	# Keyboard
-        openrazer-meta     # Needed for Razer Keyboard Color control
-        razercommander-git # Needed for Razer Keyboard Color control
-        linux-headers      # Needed for Razer Keyboard Color control
+        # Keyboard
+        openrazer-meta      # Needed for Razer Keyboard Color control
+        razercommander-git  # Needed for Razer Keyboard Color control
+        linux-headers       # Needed for Razer Keyboard Color control
 
         # Programming
-        rustup             # Rustlang
-        nodejs             # Javascript
-        npm                # Javascript
-        composer           # PHP
+        rustup              # Rust
+        nodejs              # JavaScript
+        npm                 # JavaScript
+        composer            # PHP
+        cmake               # Easier compile
+        clang               # C/C++ compiler
 
         # Services
         systemctl
         mariadb
         apache
 
-        # C/C++
-        clang
-        cmake 
-
         # Misc
-        aseprite         # Pixel Art Editor
-        sl               # Yay! trains!
-        tree             # Shows a tree of things
-        ranger-git       # CLI file browser
-        mpd              # Music Player Daemon
-        mpc              # MPD CLI client
-        ncmpcpp          # MPD client 
-        normalize        # Normalize audio
+        aseprite            # Pixel Art Editor
+        sl                  # Yay! trains!
+        tree                # Shows a tree of things
+        ranger-git          # CLI file browser
+        mpd                 # Music Player Daemon
+        mpc                 # MPD CLI client
+        ncmpcpp             # MPD client
+        normalize           # Normalize audio
 )
 
 yay -S ${install_targets[*]} --noconfirm --needed
 
 
-notify-send "$title" "pacaur finished installing packages!"
+notify-send "$title" "Finished installing packages!"
 
 sudo sed -i "s/Antergos/Arch/g" /etc/os-release
 sudo sed -i "s/\;extension=mysqli/extension=mysqli/" /etc/php/php.ini
 sudo sed -i "s/\;extension=pdo_mysql/extension=pdo_mysql/" /etc/php/php.ini
+sudo sed -i 's/dmenu /dmenu_x /' usr/bin/dmenu_run
 
 
 systemctl enable mariadb.service
@@ -159,7 +155,6 @@ sudo pip install pyserial
 notify-send "$title" "pip packages installed!"
 
 if [[ ! -d ~/.emacs.d ]]; then
-    mkdir ~/Documents/Agenda
     git clone https://github.com/nlsnightmare/.emacs.d
     rm ~/.emacs
 fi
