@@ -16,7 +16,7 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
     notify-send "$title" "Installed zsh and oh-my-zsh!"
 fi
 
-if [[ `command -v yay` ]]; then
+if [[ ! `command -v yay` ]]; then
     git clone https://aur.archlinux.org/yay.git && cd yay
     makepkg -si --noconfirm
     cp completions/zsh ~/.oh-my-zsh/custom/plugins/zsh-completions/src/_yay
@@ -31,7 +31,7 @@ yay -Syyu --noconfirm
 
 notify-send "$title" "Updated packages!"
 
-if [[ `command -v st` ]]; then
+if [[ ! `command -v st` ]]; then
     git clone https://github.com/nlsnightmare/st && cd st
     sudo make install
     cd ..
@@ -51,10 +51,9 @@ export install_targets=(
 
         # Theaming
         neofetch            # Display system info on terminal
-        zsh                 # Zsh shell
         feh                 # Change desktop background
         dmenu2              # Application launcher
-        rofi                # Another Application launcher
+        rofi                 # Another Application launcher
         ttf-font-awesome    # Icons for workspaces and more
         cava                # Terminal-based visualizer
         playerctl           # Controll music from the terminal
@@ -80,11 +79,15 @@ export install_targets=(
         composer            # PHP
         cmake               # Easier compile
         clang               # C/C++ compiler
+        python
+        python-pip
 
         # Services
         systemctl
         mariadb
         apache
+        
+        mycli
 
         # Misc
         aseprite            # Pixel Art Editor
