@@ -1,246 +1,39 @@
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.config/nvim/plugins')
 Plug 'VundleVim/Vundle.vim'
 Plug 'dylanaraps/wal.vim'
 Plug 'chrisbra/Colorizer'
-Plug 'sinetoami/lightline-neomake'
-Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
+
+" Vim Helpers
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
-Plug 'neomake/neomake'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'adelarsq/vim-matchit'
-
-" easily align text
-" https://vimawesome.com/plugin/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+" REST Client
 Plug 'diepm/vim-rest-console'
-Plug 'mattn/emmet-vim'
-Plug 'sheerun/vim-polyglot'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
+" Fuzzy file matching
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neoinclude.vim'
+" Preview markdown files
+Plug 'JamshedVesuna/vim-markdown-preview'
 
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'rust-lang/rust.vim'
-Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
-Plug '2072/PHP-Indenting-for-VIm'
-Plug 'captbaritone/better-indent-support-for-php-with-html'
+" Add support for jsx
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
-            \ }
-
+" coc.vim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-let g:php_html_load = 1
-let g:neosnippet#expand_word_boundary = 1
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-imap <expr><tab>
- \ neosnippet#expandable_or_jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" :
- \ emmet#isExpandable() ? "\<C-y>," :
- \ pumvisible() ? "\<C-n>" :
- \ "\<tab>"
-
-
-smap <expr><tab>
- \ neosnippet#expandable_or_jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" :
- \ emmet#isExpandable() ? "\<C-y>," :
- \ pumvisible() ? "\<C-n>" :
- \ "\<tab>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-
-let g:rustfmt_autosave = 0
-let g:racer_cmd = "/home/archangel/.cargo/bin/racer"
-
-
-
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-            \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-            \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-call deoplete#enable()
-
-filetype on
-syntax on
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set number relativenumber
-set showcmd
-set tildeop
-filetype indent on
-set smartcase
-set ignorecase
-set wildmode=longest,list,longest:full
-set wildmenu
-set showmatch
-
-set incsearch
-set nohlsearch
-let mapleader = "\<Space>"
-
-set foldenable
-set foldlevelstart=10
-nnoremap Q <nop>
-set foldmethod=indent
-
-nnoremap =b gg=G``zz
-nnoremap j gj
-nnoremap k gk
-nnoremap L $
-nnoremap H ^
-nnoremap <M-j> :move +1<CR>
-vnoremap <M-j> :move '>+1<CR>gv
-" '
-
-nnoremap <M-k> :move -2<CR>
-vnoremap <M-k> :move -2<CR>gv
-
-nnoremap <tab> za
-nnoremap <C-b> :Buffers<CR>
-nnoremap <C-e> :Files<CR>
-nnoremap <leader>S :Lines<CR>
-nnoremap <leader>q :bd<cr>
-nnoremap <leader>Q :bd!<cr>
-nmap <leader>s :set nohlsearch<CR><Plug>(easymotion-sn)
-
-nmap <leader><leader>sv :source $MYVIMRC<CR>
-nmap <leader><leader>ev :e $MYVIMRC<CR> 
-nmap <leader><leader>pi :PlugInstall<CR>
-nmap <leader><leader>pc :PlugClean<CR>
-nmap <leader><leader>pu :PlugUpdate<CR>
-nmap <leader><leader>pU :PlugUpgrade<CR>
-nmap <leader><leader>es :vsp<CR>:UltiSnipsEdit<CR>
-cabb W w
-
-
-nnoremap <leader><leader>sz :vsp ~/.zshrc<CR>
-nnoremap <leader><leader>ez :vsp ~/.zshrc<CR>
-
-nnoremap <leader>n :lnext<cr>
-nnoremap <leader>p :lprev<cr>
-let g:EasyMotion_smartcase = 1
-
-
-
-let g:fzf_layout = { 'down': '~40%' }
-
-vnoremap L $
-vnoremap H ^
-
-inoremap kj <esc>
-
-
-
-" Highlight last inserted text
-nnoremap gV `[v`]
-nnoremap <leader><space> :nohlsearch<CR>
-
-set completeopt=menu,menuone,longest,noinsert
-
-
-set nowrap
-
-" use the system clipboard
-set clipboard=unnamedplus
-
-set notermguicolors
-colorscheme wal
-hi CursorLineNr guibg=#ff0000
-let g:lightline = { 'colorscheme': 'wal' }
-
-let g:neomake_highlight_lines = 1
-let g:airline#extensions#neomake#enabled=1
-let g:lightline = {
-      \ 'colorscheme': 'wal',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'statusline' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype'] ]
-      \ },
-      \ } 
-call neomake#configure#automake('nrwi', 500)
-hi LineNr term=bold cterm=bold ctermfg=2 guifg=Red guibg=Red
-
-let g:AutoPairsFlyMode = 0
-set signcolumn=yes
-
-" call neomake#configure#automake('nrwi', 3000)
-let g:neomake_cpp_enabled_makers = ['clang']
-let g:neomake_cpp_clang_maker = {
-   \ 'exe': 'clang++',
-   \ 'args': ['-Wall', '-Iinclude', '-Wextra', '-Weverything', '-pedantic', '-Wno-sign-conversion' ,'-Wno-c++98-compat', '-Wnognu-designator'],
-   \ }
-
-let g:neomake_javascript_enabled_makers = ['eslint']
-
-
-" Required for operations modifying multiple buffers like rename.
-set hidden
-
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-            \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-            \ 'python': ['/usr/bin/pyls'],
-            \ 'cpp': ['/usr/bin/cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
-            \ 'typescript': ['/usr/bin/javascript-typescript-stdio'],
-            \ 'vue': ['vls'],
-            \ 'cs': ['/opt/omnisharp-roslyn/OmniSharp.exe', '-lsp']
-            \ }
-
-let g:LanguageClient_rootMarkers = {
-    \ 'cs': ['.git', '*.csproj'],
-\ }
-
-let g:LanguageClient_loggingLevel = 'ERROR'
-let g:LanguageClient_windowLogMessageLevel = 'Error'
-let g:LanguageClient_hoverPreview='Always'
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_definition()<CR>
-
-set updatetime=500
-
-
-" Tern JS
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#case_insensitive = 1
-let g:deoplete#sources#ternjs#guess = 0
-
+source ~/.config/nvim/base.vim
+source ~/.config/nvim/keys.vim
+source ~/.config/nvim/base-completion.vim
 
 " Startify
 let g:startify_bookmarks = [ 
@@ -260,27 +53,19 @@ let g:startify_lists = [
             \ { 'type': 'files',     'header': ['   MRU']            },
             \ { 'type': 'sessions',  'header': ['   Sessions']       },
             \ ]
-
-
 let g:startify_session_persistence = 1
 let g:startify_change_to_dir = 0
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+colorscheme wal
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" Use https://github.com/joeyespo/grip for markdown preview.
+let vim_markdown_preview_github=1
 
 
-autocmd FileReadPost * :Neomake
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript
-autocmd BufNewFile,BufRead * if &ft == '' | set ft=sh | endif
-autocmd BufNewFile,BufRead ~/.config/i3/config set ft=i3config
-autocmd FileType rust nmap <buffer> <leader>t :RustTest<CR>
-autocmd FileType rust nmap <buffer> <leader>T :RustTest!<CR>
-autocmd FileType rust nmap <buffer> <leader>r :!cargo run<CR>
-autocmd FileType rust nmap <buffer> <leader>f :RustFmt<CR>
-autocmd FileType rust nmap gd <Plug>(rust-def)
-autocmd FileType rust nmap gs <Plug>(rust-def-split)
-autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
-autocmd FileType rust nmap gD <Plug>(rust-doc)
+" Add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+
+" PHP, move to it's own file
+autocmd FileType php setlocal commentstring=//\ %s
