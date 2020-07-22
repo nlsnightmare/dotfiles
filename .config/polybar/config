@@ -17,49 +17,43 @@
 ; ==========================================================
 
 [colors]
-background     = ${xrdb:color0:#222}
-background-alt = ${xrdb:color7:#222}
-foreground     = ${xrdb:color7:#222}
+background     = ${xrdb:color16:#222}
+background-alt = ${xrdb:color4:#222}
+foreground     = ${xrdb:color4:#222}
 foreground-alt = #FFFFFF
 ; foreground-alt = ${xrdb:color0:#222}
 
-border         = ${xrdb:color3:#222}
+border         = ${xrdb:color5:#222}
 primary        = #ffffff
 secondary      = #e60053
 alert          = #bd2c40
 
 [bar/bspwm]
-width = 100%
-height = 40
-; offset-x = 1%
-; offset-y = 100%
-; radius = 6.0
+width = 90%
+offset-x = 5%
+height = 30
 radius = 0.0
-; fixed-center = true
+fixed-center = true
 
 background = ${colors.background}
-foreground = #ffffff
+foreground = #fff
 
-line-size = 4
+line-size = 3
 line-color = #f00
 
-border-top-size = 0
+border-top-size = 1
 border-bottom-size = 1
-border-left-size = 0
-border-right-size = 0
+border-left-size = 1
+border-right-size = 1
 border-color = ${colors.border}
 
 padding-left = 0
-padding-right = 1
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
 
-; font-0 = Joystix:pixelsize=10;1
-; font-0 = Input Mono:pixelsize=13;1
-; font-0 = Iosevka:pixelsize=14:antialias=true;1
-; font-0 = DeJaVu Sans Mono:pixelsize=14:antialias=true;1
-font-0 = Iosevka:pixelsize=16:antialias=true;1
+font-0 = Iosevka Fixed:pixelsize=12:antialias=true;3
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = "FontAwesome:fontformat=truetype:pixelsize=12;3"
@@ -71,88 +65,16 @@ modules-left = bspwm
 modules-center = mpd
 modules-right = pulseaudio date network 
 
-tray-position = right
-tray-padding = 1
+tray-position = 
+tray-padding = 0
 tray-transparent = true
-tray-background = ${xrdb:color3:#222}
+tray-background = ${xrdb:color5:#222}
 
 wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[bar/example]
-width = 100%
-height = 26
-; offset-x = 1%
-; offset-y = 100%
-; radius = 6.0
-radius = 0.0
-; fixed-center = true
-
-background = ${colors.background}
-foreground = #ffffff
-
-line-size = 4
-line-color = #f00
-
-border-top-size = 0
-border-bottom-size = 2
-border-left-size = 0
-border-right-size = 0
-border-color = ${colors.border}
-
-padding-left = 0
-padding-right = 1
-
-module-margin-left = 1
-module-margin-right = 1
-
-; font-0 = Joystix:pixelsize=10;1
-; font-0 = Input Mono:pixelsize=13;1
-; font-0 = Iosevka:pixelsize=14:antialias=true;1
-; font-0 = DeJaVu Sans Mono:pixelsize=14:antialias=true;1
-font-0 = Iosevka:pixelsize=14:antialias=true;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-font-3 = "FontAwesome:fontformat=truetype:pixelsize=12;3"
-font-4 = "Font Awesome 5 Free:style=Regular:pixelsize=12;3"
-font-5 = "Font Awesome 5 Free:style=Solid:pixelsize=12;3"
-font-6 = "Font Awesome 5 Brands:style=Regular:pixelsize=12;3"
-
-modules-left = i3 title
-modules-center = mpd
-modules-right = pulseaudio date network 
-
-tray-position = right
-tray-padding = 2
-tray-transparent = true
-tray-background = ${xrdb:color3:#222}
-
-;wm-restack = bspwm
-wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-; Required for i3
 [module/bspwm]
 type = internal/bspwm
 
@@ -164,9 +86,10 @@ label-focused-foreground = ${colors.foreground-alt}
 label-focused-padding = 2
 
 label-occupied = %name%
+label-occupied-background = ${xrdb:color0:#222}
 label-occupied-padding = 2
 
-label-urgent = %name%!
+label-urgent = !%name%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
@@ -379,3 +302,4 @@ screenchange-reload = true
 ; compositing-background = screen
 ; compositing-foreground = source
 ; compositing-border = over
+
