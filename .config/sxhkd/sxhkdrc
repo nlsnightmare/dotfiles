@@ -151,3 +151,6 @@ super + d
 
 super + m
     rofi -modi color:~/.scripts/colors/mode -show color
+
+Print
+    flameshot gui
