@@ -67,7 +67,7 @@ export install_targets=(
         compton             # Transparency and more
         unclutter           # Hide mouse when idle
         dunst               # Notification Server
-        flameshot           # screenshot utility
+        flameshot           # Screenshot utility
 
         # Keyboard
         openrazer-meta      # Needed for Razer Keyboard Color control
