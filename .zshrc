@@ -4,14 +4,24 @@ export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.scripts/colors
 export PATH=$PATH:~/.scripts/
-export PATH=$PATH:~/.gem/ruby/2.6.0/bin
+export PATH=$PATH:~/.gem/ruby/2.7.0/bin
+export PATH=$PATH:~/.local/share/gem/ruby/3.0.0/bin
 export PATH=$PATH:~/.config/composer/vendor/bin
+export PATH=$PATH:/opt/flutter/bin
+export DOTNET_ROOT=$(dirname $(realpath $(which dotnet)))
+
+# Required to start xdebug from vscode
+export XDEBUG_CONFIG="idekey=VSCODE"
+
+export HISTSIZE=100000
+export HISTFILESIZE=100000
 
 ZSH_THEME="robbyrussell"
 ZSH_THEME="refined"
 
 plugins=(
     git
+    colored-man-pages
     command-not-found
     last-working-dir
     zsh-autosuggestions
@@ -46,26 +56,48 @@ function mkcd {
 }
 
 function google {
-    if [[ $# -eq 0 ]]; then
-        url="htpps://google.com"
-    else 
-        url="https://google.com/search?q=$@"
-    fi
-
-    xdg-open $url
+    xdg-open "https://google.com/search?q=$@"
 }
 
-alias p='yay'
+function kubessh {
+    namespace=$2
+    if [[ -z $2 ]]; then
+        namespace='default'
+    fi
+
+    kubectl -n $namespace exec -ti deploy/$1 -- bash
+}
+
+function note {
+    echo "$@" >> $HOME/Documents/notes
+}
+
+function notes {
+    tail -n20 $HOME/Documents/notes
+}
+
+function clearnotes {
+    echo "" > $HOME/Documents/notes
+}
+
+alias p='pacaur --noedit'
 alias cl='clear; neofetch'
 alias vim='nvim'
 alias v='nvim'
+alias sv='sudo nvim'
 alias open='xdg-open'
 alias sudo='sudo -E '
 alias rtheme='theme --random'
-alias ls='ls -h --color=auto --group-directories-first'
 alias starwars='telnet towel.blinkenlights.nl'
-# alias dmenu='rofi -dmenu'
+alias pf='php artisan test --filter'
+alias gs='git status'
+alias k8='kubectl'
+alias k8-proxy='xdg-open "http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=default" & kubectl proxy'
+alias tinker='php artisan tinker'
+alias artisan='php artisan'
+alias ls='lsd'
 
 neofetch
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /etc/profile.d/jre.sh ] && source /etc/profile.d/jre.sh
