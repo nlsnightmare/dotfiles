@@ -28,6 +28,60 @@ primary        = #ffffff
 secondary      = #e60053
 alert          = #bd2c40
 
+[bar/bspwm2]
+bottom = false
+monitor = HDMI-A-0
+height = 30
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = #fff
+
+line-size = 3
+line-color = #f00
+
+border-top-size = 1
+border-bottom-size = 1
+border-left-size = 1
+border-right-size = 1
+border-color = ${colors.border}
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Iosevka Fixed:pixelsize=16:antialias=true;3
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = "FontAwesome:fontformat=truetype:pixelsize=12;3"
+font-4 = "Font Awesome 5 Free:style=Regular:pixelsize=12;3"
+font-5 = "Font Awesome 5 Free:style=Solid:pixelsize=12;3"
+font-6 = "Font Awesome 5 Brands:style=Regular:pixelsize=12;3"
+
+modules-left = bspwm
+modules-right = pulseaudio date network 
+
+tray-position = 
+tray-padding = 0
+tray-transparent = true
+tray-background = ${xrdb:color5:#222}
+
+wm-restack = bspwm
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/top_external]
+bottom = false
+monitor = VGA1
+
+modules-left = bspwm mpd
+modules-right = keyboard volume datetime powermenu
+
+
 [bar/bspwm]
 width = 90%
 offset-x = 5%
@@ -302,4 +356,3 @@ screenchange-reload = true
 ; compositing-background = screen
 ; compositing-foreground = source
 ; compositing-border = over
-
