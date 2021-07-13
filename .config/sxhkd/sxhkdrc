@@ -1,6 +1,5 @@
-
 super + Return
-	st
+	alacritty
 
 # program launcher
 super + @space
@@ -140,17 +139,14 @@ XF86Audio{Play,Pause,Next,Prev}
     mpc {toggle,pause,next,prev}
 
 Print
-    scrot "~/Pictures/Screenshots/Screenshot%Y-%m-%d%H:%M:%S.png"
+    flameshot gui
 
 # Other
 super + F1
-    firefox
+    google-chrome-stable
 
 super + d
     rofi -show run
 
 super + m
     rofi -modi color:~/.scripts/colors/mode -show color
-
-Print
-    flameshot gui
