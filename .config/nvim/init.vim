@@ -21,11 +21,20 @@ Plug 'junegunn/fzf.vim'
 
 " Preview markdown files
 Plug 'JamshedVesuna/vim-markdown-preview'
+let vim_markdown_preview_browser='google-chrome-stable'
+" let vim_markdown_preview_use_xdg_open=1
+let vim_markdown_preview_toggle=1
+
+
 
 " Add support for jsx
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
+
+
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " coc.vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -57,9 +66,6 @@ let g:startify_session_persistence = 1
 let g:startify_change_to_dir = 0
 
 colorscheme wal
-
-" Use https://github.com/joeyespo/grip for markdown preview.
-let vim_markdown_preview_github=1
 
 
 " Add yaml stuffs
