@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/home/maru/.scripts'
+let g:netrw_dirhist_1='/home/maru/.config/polybar/blocks'
+let g:netrw_dirhist_0='/home/maru/.config/rofi'
+let g:netrw_dirhist_9='/home/maru/Downloads/dotfiles/.config/nvim'
+let g:netrw_dirhist_8='/home/maru/.config/alacritty'
+let g:netrw_dirhist_7='/home/maru/Documents/work/kubernetes/mydata-cloud'
+let g:netrw_dirhist_6='/home/maru/.config/polybar'
+let g:netrw_dirhist_5='/home/maru/Documents/work/kubernetes/invoice-portal'
+let g:netrw_dirhist_4='/etc/php/conf.d'
+let g:netrw_dirhist_3='/home/maru/Documents/projects/portfolio/_posts'

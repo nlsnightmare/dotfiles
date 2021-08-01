@@ -1,0 +1,8 @@
+#/bin/sh
+
+# upload music
+echo "Alternative Rock -> OneDrive"
+rclone sync -P "/run/media/maru/files/Music/Alternative Rock/" "onedrive:/music/alt-rock"
+
+echo "OneDrive -> Camera"
+rclone -P  "onedrive:/nick/camera" "/run/media/maru/files/Εικόνες/phone"
