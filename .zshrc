@@ -14,7 +14,6 @@ export CHROME_EXECUTABLE=google-chrome-stable
 # Required to start xdebug from vscode
 export XDEBUG_CONFIG="idekey=VSCODE"
 export NOTES=~/Documents/notes
-export ALPHAVANTAGE_API_KEY=F6DXFUZSAMJ2EZ9T
 
 export HISTSIZE=100000
 export HISTFILESIZE=100000
