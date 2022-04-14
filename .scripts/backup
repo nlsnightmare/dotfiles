@@ -1,8 +1,10 @@
 #/bin/sh
 
 # upload music
-echo "Alternative Rock -> OneDrive"
-rclone sync -P "/run/media/maru/files/Music/Alternative Rock/" "onedrive:/music/alt-rock"
+echo "Music -> onedrive"
+rclone sync -P "/run/media/maru/files/Music/" "onedrive:/music/"
 
-echo "OneDrive -> Camera"
-rclone -P  "onedrive:/nick/camera" "/run/media/maru/files/Εικόνες/phone"
+echo "onedrive -> Images"
+rclone sync -P "onedrive:/nick/camera" "/run/media/maru/files/Εικόνες/phone"
+
+echo `date +"%Y-%m-%d"` >> /var/log/backup.log
