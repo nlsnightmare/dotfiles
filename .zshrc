@@ -8,13 +8,20 @@ export PATH=$PATH:~/.gem/ruby/2.7.0/bin
 export PATH=$PATH:~/.local/share/gem/ruby/3.0.0/bin
 export PATH=$PATH:~/.config/composer/vendor/bin
 export PATH=$PATH:/opt/flutter/bin
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export DOTNET_ROOT=$(dirname $(realpath $(which dotnet)))
-
+export CHROME_EXECUTABLE=google-chrome-stable
 # Required to start xdebug from vscode
 export XDEBUG_CONFIG="idekey=VSCODE"
+export NOTES=~/Documents/notes
+export ALPHAVANTAGE_API_KEY=F6DXFUZSAMJ2EZ9T
 
 export HISTSIZE=100000
 export HISTFILESIZE=100000
+
+# force typescirpt to use fs events, should result in
+# lower idle cpu usage
+export TSC_WATCHFILE=UseFsEventsWithFallbackDynamicPolling
 
 ZSH_THEME="robbyrussell"
 ZSH_THEME="refined"
@@ -70,21 +77,26 @@ function kubessh {
 }
 
 function note {
-    echo "$@" >> $HOME/Documents/notes
+    echo "$@" >> $NOTES
 }
 
 function notes {
-    tail -n20 $HOME/Documents/notes
+    if [ -f $NOTES ]; then
+        less -n20 $NOTES
+    else
+        echo "Notes are empty"
+    fi
 }
 
 function clearnotes {
-    echo "" > $HOME/Documents/notes
+    rm $NOTES
 }
 
 alias p='pacaur --noedit'
 alias cl='clear; neofetch'
 alias vim='nvim'
 alias v='nvim'
+alias ve='nvim /tmp/$(uuidgen)'
 alias sv='sudo nvim'
 alias open='xdg-open'
 alias sudo='sudo -E '
@@ -94,6 +106,7 @@ alias pf='php artisan test --filter'
 alias gs='git status'
 alias k8='kubectl'
 alias k8-proxy='xdg-open "http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=default" & kubectl proxy'
+alias ace='node ace'
 alias artisan='php artisan'
 alias tinker='php artisan tinker'
 alias ls='lsd'
@@ -102,6 +115,7 @@ alias d64='base64 -d'
 alias grep='rg'
 alias ra='ranger'
 alias c='code .'
+alias xclip='xclip -selection clipboard'
 
 neofetch
 
