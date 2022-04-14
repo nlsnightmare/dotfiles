@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-bspc monitor DisplayPort-0 -d 1 2 3 4 5
 bspc monitor HDMI-A-0 -d 6 7 8 9 0
+bspc monitor DisplayPort-0 -d 1 2 3 4 5
 
 xrandr --output HDMI-A-0 --mode 2560x1440
 # xrandr --output HDMI-A-0 --mode 1920x1080
@@ -16,7 +16,8 @@ function set-borders {
 
 if [[ $1 != "--reload" ]]; then
     dunst &
-    wal -R
+    # wal -R
+    feh --bg-fill ~/Pictures/otherthing.jpg
     sxhkd &
     compton --config ~/.config/compton/compton.conf &
     mpd
@@ -60,7 +61,7 @@ bspc config borderless_monocle    false
 bspc config focus_follows_pointer true
 bspc config automatic_scheme alternate
 
-bspc rule -a Gimp desktop='^7' state=floating follow=on
+bspc rule -a Gimp state=floating follow=on
 
 notify-send "bspwm" "done!"
 
