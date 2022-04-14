@@ -19,6 +19,7 @@
 
 !.config/ncmpcpp/
 !.config/ncmpcpp/*
+.config/ncmpcpp/*.log
 
 !.config/compton/
 !.config/compton/*
