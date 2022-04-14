@@ -1,7 +1,0 @@
-#!/bin/bash
-
-pushd ~/Music >> /dev/null
-files=`find . -printf "%T+\t%p\n" | sort | cut -d$'\t' -f2 | rg "\.(mp3|flac)$" | cut -d'/' -f1 --complement | tail -n20` 
-echo "${files}" > ~/.config/mpd/playlists/MostRecent.m3u
-echo "updated most recent songs."
-popd >> /dev/null
