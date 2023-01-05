@@ -15,16 +15,15 @@ export CHROME_EXECUTABLE=google-chrome-stable
 export XDEBUG_CONFIG="idekey=VSCODE"
 export NOTES=~/Documents/notes
 
-export HISTSIZE=100000
 export HISTFILESIZE=100000
-
+ 
 # force typescirpt to use fs events, should result in
 # lower idle cpu usage
 export TSC_WATCHFILE=UseFsEventsWithFallbackDynamicPolling
-
+ 
 ZSH_THEME="robbyrussell"
-ZSH_THEME="refined"
-
+# ZSH_THEME="refined"
+# 
 plugins=(
     git
     colored-man-pages
@@ -32,18 +31,17 @@ plugins=(
     last-working-dir
     zsh-autosuggestions
     zsh-syntax-highlighting
-    laravel5
     ripgrep
     zsh-completions
 )
 autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
-
+ 
 COMPLETION_WAITING_DOTS="false"
 
-
+ 
 bindkey '^ ' autosuggest-execute
-
+ 
 HYPHEN_INSENSITIVE="true"
 
 # Make ranger use nvim
@@ -115,8 +113,7 @@ alias grep='rg'
 alias ra='ranger'
 alias c='code .'
 alias xclip='xclip -selection clipboard'
-
+ 
 neofetch
-
+ 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /etc/profile.d/jre.sh ] && source /etc/profile.d/jre.sh

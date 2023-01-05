@@ -105,8 +105,8 @@ format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-padding = 2
 
-date = %H:%M:%S
-time = %H:%M
+date = %I:%M:%S%p
+time = %I:%M %p
 date-alt = %A, %d %B %Y
 time-alt = %H:%M:%S
 
