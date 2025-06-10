@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [[ $1 == 'toggle' ]]; then
+	found=$(grep latte $XDG_CONFIG_HOME/nvim/after/plugin/colors.lua)
+	if [[ $found ]]; then
+		dark=1
+	else
+		dark=0
+	fi
+elif [[ $1 == 'dark' ]]; then
+	dark=1
+elif [[ $1 == 'light' ]]; then
+	dark=0
+else
+	date=$(date +"%H")
+
+	if [[ $date -ge 21 || $date -le 7 ]]; then
+		dark=1
+	else
+		dark=0
+	fi
+fi
+
+if [[ $dark -eq 1 ]]; then
+	sed='s/latte/frappe/'
+else
+	sed='s/frappe/latte/'
+fi
+
+echo "dark is $dark, $sed"
+sed -i $sed $XDG_CONFIG_HOME/nvim/after/plugin/colors.lua
+
+for path in $(nvr --nostart --serverlist); do
+	nvr --nostart --servername $path -cc 'so ~/.config/nvim/after/plugin/colors.lua' >/dev/null 2>&1 &
+done
+
+sed -i $sed $XDG_CONFIG_HOME/alacritty/alacritty.toml

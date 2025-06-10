@@ -1,0 +1,19 @@
+#!/bin/env python
+
+import re
+import subprocess
+
+repo    = subprocess.getoutput('git config --get remote.origin.url')
+matches = re.search('git@(?P<host>.*):(?P<path>.*).git', repo)
+
+if matches == None:
+    print(f'Error: Unable to parse repo url "{repo}".\nAre you in a git repository?')
+    exit(1);
+
+host    = matches.group('host')
+path    = matches.group('path')
+fullurl = f'https://{host}/{path}'
+
+subprocess.run(['xdg-open', fullurl])
+
+

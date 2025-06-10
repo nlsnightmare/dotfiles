@@ -1,0 +1,17 @@
+#!/bin/sh
+
+logfile=/var/log/backup.log
+
+echo " Backup in progress..." >$logfile
+
+# upload music
+echo "Music -> onedrive"
+rclone sync -P "/run/media/maru/files/Music/" "onedrive:/music/"
+
+echo "onedrive -> Images"
+rclone sync -P "onedrive:/nick/camera" "/run/media/maru/files/Εικόνες/phone"
+
+echo "notes -> onedrive"
+rclone copy -P "/home/maru/Documents/obsidian/" "onedrive:/notes/obsidian"
+
+echo " @ $(date +%Y-%m-%d)" >$logfile

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+value=$1
+color=$2
+if [[ $color == "" ]]; then
+    color="primary"
+fi
+
+echo "$color -> $value"
+sed -ri "s/^($color *= )(.*)/\1$value/" ~/.config/polybar/config
