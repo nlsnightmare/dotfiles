@@ -20,7 +20,7 @@ export ANDROID_SDK_ROOT="/home/maru/Android/Sdk"
 export ANDROID_HOME="/home/maru/Android/Sdk"
 export CAPACITOR_ANDROID_STUDIO_PATH="/usr/bin/android-studio"
 
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+# export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 export DOTNET_ROOT=$(dirname $(realpath $(which dotnet)))
 export DOTNET_ENVIRONMENT=Development
 
@@ -205,13 +205,13 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
+
+# too slow
 # source /usr/share/nvm/init-nvm.sh
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/maru/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/maru/.config/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
+echo "sourcing zshrc" >> ~/test
