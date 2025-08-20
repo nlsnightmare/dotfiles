@@ -1,17 +1,29 @@
 #!/bin/sh
 
-logfile=/var/log/backup.log
+ICON=""
+FAILURE=""
 
-echo " Backup in progress..." >$logfile
 
-# upload music
-echo "Music -> onedrive"
-rclone sync -P "/run/media/maru/files/Music/" "onedrive:/music/"
+function print-failure {
+	if [[ $? -ne 0 ]]; then
+		echo "$FAILURE Unable to Backup $1"
+		exit
+	fi
+}
 
-echo "onedrive -> Images"
-rclone sync -P "onedrive:/nick/camera" "/run/media/maru/files/Εικόνες/phone"
+echo "$ICON Backup in progress..."
 
-echo "notes -> onedrive"
-rclone copy -P "/home/maru/Documents/obsidian/" "onedrive:/notes/obsidian"
+echo "$ICON Music -> onedrive"
+rclone sync -P "/run/media/maru/files/Music/" "onedrive:/music/" > /dev/null
+print-failure "Music"
 
-echo " @ $(date +%Y-%m-%d)" >$logfile
+
+echo "$ICON onedrive -> Images"
+rclone sync -P "onedrive:/nick/camera" "/run/media/maru/files/Εικόνες/phone" > /dev/null
+print-failure "Download Images"
+
+echo "$ICON notes -> onedrive"
+rclone copy -P "/home/maru/Documents/obsidian/" "onedrive:/notes/obsidian" > /dev/null
+print-failure "Obsidian"
+
+echo " $(date +%d/%m)"
