@@ -17,6 +17,22 @@ export XDG_CONFIG_HOME=~/.config
 export FVM_CACHE_PATH=~/fvm/default/bin
 
 
+# Install possibly missing zsh plugins
+if [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+if [[ ! -d ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions ]]; then
+  git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+fi
+
+
+if [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
+
+
+
 # Android stuff
 export ANDROID_SDK_ROOT="/home/maru/Android/Sdk"
 export ANDROID_HOME="/home/maru/Android/Sdk"
@@ -48,7 +64,7 @@ plugins=(
     last-working-dir
     zsh-autosuggestions
     zsh-syntax-highlighting
-    ripgrep
+    # ripgrep
     zsh-completions
 )
 autoload -U compinit && compinit
@@ -197,9 +213,14 @@ alias proj='project'
 alias conf='config'
 alias techcom='kubectl exec -ti deployment/bc-social-alpha -- php artisan techcom'
 
-fastfetch
+# fastfetch
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+else
+	echo "Generating fzf zsh completions..."
+ fzf --zsh > ~/.fzf.zsh
+fi
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -213,5 +234,3 @@ fpath+=~/.zfunc
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/maru/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/maru/.config/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
-
-echo "sourcing zshrc" >> ~/test
