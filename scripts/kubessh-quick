@@ -1,0 +1,21 @@
+#!/bin/bash
+
+options="bc2\n"
+options+="invoice-portal\n"
+options+="invoice-portal-dev\n"
+options+="billing"
+
+selected=$(echo -e "$options" | rofi -dmenu -p 'Deployment' -matching fuzzy)
+if [[ $selected == 'bc2' ]]; then
+  alacritty -e \
+    kubectl exec -ti deployment/bc-social-alpha -- bash
+elif [[ $selected == 'invoice-portal' ]]; then
+  alacritty -e \
+    kubectl exec -ti deployment/invoice-portal -n invoice-portal -- bash
+elif [[ $selected == 'invoice-portal-dev' ]]; then
+  alacritty -e \
+    kubectl exec -ti deployment/invoice-portal-dev -n invoice-portal -- bash
+elif [[ $selected == 'billing' ]]; then
+  alacritty -e \
+    kubectl exec -ti deployment/payment-gateway -n payment-gateway -- bash
+fi

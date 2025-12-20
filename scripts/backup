@@ -22,8 +22,4 @@ echo "$ICON onedrive -> Images"
 rclone sync -P "onedrive:/nick/camera" "/run/media/maru/files/Εικόνες/phone" > /dev/null
 print-failure "Download Images"
 
-echo "$ICON notes -> onedrive"
-rclone copy -P "/home/maru/Documents/obsidian/" "onedrive:/notes/obsidian" > /dev/null
-print-failure "Obsidian"
-
 echo " $(date +%d/%m)"

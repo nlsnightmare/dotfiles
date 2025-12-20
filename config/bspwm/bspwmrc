@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-bspc monitor HDMI-A-0 -d 6 7 8 9 0
-bspc monitor DisplayPort-0 -d 1 2 3 4 5
+LEFT=HDMI-A-0
+RIGHT=DisplayPort-0
+bspc monitor $LEFT -d 1 2 3 4 5
+bspc monitor $RIGHT -d 6 7 8 9 0
 
-xrandr --output HDMI-A-0 --mode 2560x1440 --primary
+xrandr --output $LEFT --mode 1920x1080 --left-of DisplayPort-0
+xrandr --output $RIGHT --mode 2560x1440 --primary
 
 killall polybar
 polybar top-left -r &
@@ -13,7 +16,6 @@ if [[ $1 != "--reload" ]]; then
   # the system is booting
   feh --bg-fill ~/Pictures/squares.png
 
-  dunst &
   sxhkd &
   unclutter --timeout 3 &
   kdeconnect-indicator &

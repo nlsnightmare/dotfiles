@@ -1,4 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
+# export PATH=$PATH:~/fvm/default/bin
 export PATH=$PATH:.
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.cargo/bin
@@ -7,12 +8,13 @@ export PATH=$PATH:~/.scripts/
 export PATH=$PATH:~/.gem/ruby/2.7.0/bin
 export PATH=$PATH:~/.local/share/gem/ruby/3.0.0/bin
 export PATH=$PATH:~/.config/composer/vendor/bin
-export PATH=$PATH:/opt/flutter/bin
+# export PATH=$PATH:/opt/flutter/bin
 export PATH=$PATH:~/.dotnet/tools
 
 export NOTES=~/Documents/notes
 export WORK_DIRECTORY=~/Documents/work
 export XDG_CONFIG_HOME=~/.config
+export FVM_CACHE_PATH=~/fvm/default/bin
 
 
 # Android stuff
@@ -194,8 +196,6 @@ alias xclip='xclip -selection clipboard'
 alias proj='project'
 alias conf='config'
 alias techcom='kubectl exec -ti deployment/bc-social-alpha -- php artisan techcom'
-alias htop='vtop'
-alias top='vtop'
 
 fastfetch
 
