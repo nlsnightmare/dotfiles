@@ -3,7 +3,7 @@
 bspc monitor HDMI-A-0 -d 6 7 8 9 0
 bspc monitor DisplayPort-0 -d 1 2 3 4 5
 
-xrandr --output HDMI-A-0 --mode 2560x1440 --primary
+xrandr --output DisplayPort-0 --right-of HDMI-A-0 --mode 2560x1440 --primary
 
 killall polybar
 polybar top-left -r &
@@ -17,7 +17,7 @@ if [[ $1 != "--reload" ]]; then
   sxhkd &
   unclutter --timeout 3 &
   kdeconnect-indicator &
-  picom --config ~/.config/picom/picom.conf -b
+  picom --daemon --backend glx --config ~/.config/compton/compton.conf
 
   # disable sleep
   xset -dpms s off
@@ -50,7 +50,7 @@ bspc rule -a Gimp state=floating follow=on
 notify-send "bspwm" "done!"
 
 if [[ $# -eq 0 ]]; then
-  st &
+  alacritty &
   sleep 0.2
   bspc node -t pseudo_tiled
 fi
