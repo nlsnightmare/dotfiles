@@ -1,0 +1,16 @@
+#!/bin/bash 
+
+
+DATA=`kubectl top pods --selector app=bc-social-alpha --sum=true | tail -n 1 | tr -s ' '`
+CPU=`echo $DATA | cut -d' ' -f1`
+RAM=`echo $DATA | cut -d' ' -f2`
+
+
+RESPONSE=`curl --silent https://app.businesscloud.gr/api/healthcheck/stable`
+RESULT=`echo $RESPONSE | jq .message -r`
+if [[ $RESULT == "ok" ]]; then
+	echo "BC2   $CPU /  $RAM "
+else
+	notify-send --icon=dialog-warning "BC2 invalid response" "$RESPONSE"
+	echo " BC2 ($RESULT)  $CPU /  $RAM "
+fi

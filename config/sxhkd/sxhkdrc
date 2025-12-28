@@ -5,7 +5,10 @@ super + Return
 # using rofi themes from here:
 # https://github.com/adi1090x/rofi
 super + space
-    dmenu_run
+   rofi -show drun 
+
+super + w
+   rofi -show window 
 
 super + period
     mpc -q next
@@ -14,10 +17,11 @@ super + comma
     mpc -q prev
 
 super + d
-    dmenu_run
+   rofi -show drun
 
 super + p
-    mpc -q toggle
+   rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
 
 super + m
     alacritty -e ncmpcpp # -S visualizer

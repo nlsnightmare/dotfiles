@@ -9,33 +9,34 @@ killall polybar
 polybar top-left -r &
 polybar bspwm2 -r &
 
-if [[ $1 != "--reload" ]]; then
-  # the system is booting
-  feh --bg-fill ~/Pictures/squares.png
+feh --bg-fill ~/Pictures/squares.png
 
-  dunst &
+# the system is booting
+if [[ $1 != "--reload" ]]; then
+
   sxhkd &
   unclutter --timeout 3 &
   kdeconnect-indicator &
-  picom --daemon --backend glx --config ~/.config/compton/compton.conf
+  picom --daemon --backend glx --config ~/.config/picom/picom.conf
 
-  # disable sleep
-  xset -dpms s off
 
-  # disable mouse accel
-  xset m 1 1
 
-  # keyboard
-  setxkbmap -option 'grp:alt_shift_toggle' -layout us,gr
-  numlockx
-
-  # ~/.scripts/toggle-colorscheme
 
   # required for idea
   wmname compiz
 fi
 
-bspc config window_gap 4
+
+# disable sleep
+xset -dpms s off
+# disable mouse accel
+xset m 1 1
+
+# keyboard
+setxkbmap -option 'grp:alt_shift_toggle' -layout us,gr
+numlockx on
+
+bspc config window_gap 16
 bspc config split_ratio 0.52
 bspc config border_width 0
 bspc config single_monocle true

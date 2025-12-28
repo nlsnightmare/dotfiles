@@ -1,0 +1,18 @@
+#!/bin/bash 
+
+
+DATA=`kubectl top pods --namespace invoice-portal --selector app=invoice-portal --sum=true | tail -n 1 | tr -s ' '`
+CPU=`echo $DATA | cut -d' ' -f1`
+RAM=`echo $DATA | cut -d' ' -f2`
+
+
+RESPONSE=`curl --silent https://invoiceportal.gr/api/healthz`
+RESULT=`echo $RESPONSE | jq .message -r`
+if [[ $RESULT == "ok" ]]; then
+	echo "
+
+	IP   $CPU /  $RAM "
+else
+	notify-send --icon=dialog-warning "IP invalid response" "$RESPONSE"
+	echo " IP ($RESULT)  $CPU /  $RAM "
+fi

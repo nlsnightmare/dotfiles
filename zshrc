@@ -53,8 +53,8 @@ export HISTFILESIZE=100000
 # lower idle cpu usage
 export TSC_WATCHFILE=UseFsEventsWithFallbackDynamicPolling
 
-ZSH_THEME="robbyrussell"
-# ZSH_THEME=wedisagree
+# ZSH_THEME="robbyrussell"
+ZSH_THEME=wedisagree
 # ZSH_THEME="refined"
 
 plugins=(
@@ -96,7 +96,7 @@ function config {
 		fi
 
 	fi
-	selected=`fd --type directory --max-depth 1 --base-directory $XDG_CONFIG_HOME | fzf --prompt='Select a Project: '`
+	selected=`fd --type directory --type symlink --max-depth 1 --base-directory $XDG_CONFIG_HOME | fzf --prompt='Select a Project: '`
 
 	if [[ -z $selected ]]; then
 		return
@@ -209,6 +209,7 @@ alias grep='rg'
 alias ra='ranger'
 alias c='code .'
 alias xclip='xclip -selection clipboard'
+alias mysql='mariadb'
 alias proj='project'
 alias conf='config'
 alias techcom='kubectl exec -ti deployment/bc-social-alpha -- php artisan techcom'
@@ -230,7 +231,5 @@ fpath+=~/.zfunc
 # too slow
 # source /usr/share/nvm/init-nvm.sh
 
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/maru/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/maru/.config/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
+fastfetch
