@@ -9,9 +9,7 @@ RAM=`echo $DATA | cut -d' ' -f2`
 RESPONSE=`curl --silent https://invoiceportal.gr/api/healthz`
 RESULT=`echo $RESPONSE | jq .message -r`
 if [[ $RESULT == "ok" ]]; then
-	echo "
-
-	IP   $CPU /  $RAM "
+	echo "IP   $CPU /  $RAM "
 else
 	notify-send --icon=dialog-warning "IP invalid response" "$RESPONSE"
 	echo " IP ($RESULT)  $CPU /  $RAM "
