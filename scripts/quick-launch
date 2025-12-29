@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+commands=(
+	"customize theme"
+	"customize font"
+	"kubessh-quick"
+)
+
+export XDG_CONFIG_HOME="$HOME/.config"
+COMMAND=`printf "%s\n" "${commands[@]}" | rofi -dmenu`
+/usr/bin/env /home/maru/.scripts/$COMMAND

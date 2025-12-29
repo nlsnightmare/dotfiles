@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+ALACRITTY_FILE=$XDG_CONFIG_HOME/alacritty/alacritty.toml
+NVIM_COLOR_FILE=$XDG_CONFIG_HOME/nvim/after/plugin/colors.lua
+RG_ARGS='--only-matching --replace=$1'
+
+if [[ $1 == "font" ]]; then
+	TEXT="normal = \{ family = \"(.*?)\" ?"
+	SELECTED=`rg "$TEXT" $RG_ARGS $ALACRITTY_FILE | rofi -dmenu -p "Pick a font"`
+	if [[ $SELECTED == "" ]]; then
+		exit
+	fi
+
+	sed -ri 's/(^normal = .*)/# \1/' $ALACRITTY_FILE
+	sed -ri "s/# (.*?$SELECTED.*?)/\1/" $ALACRITTY_FILE
+	notify-send "Selected $SELECTED"
+elif [[ $1 == "theme" ]]; then
+	TEXT="import = \[.*?/([-a-zA-Z]+).toml\"]"
+	THEME=`rg "$TEXT" $RG_ARGS $ALACRITTY_FILE | rofi -dmenu -p "Pick a theme"`
+
+	if [[ $THEME == "" ]]; then
+		exit
+	fi
+
+	sed -i "s/^import = .*/# \0/" $ALACRITTY_FILE 
+	sed -i "/$THEME/s/^# //" $ALACRITTY_FILE
+	if [[ $THEME == "challenger-deep" ]]; then
+		THEME="challenger_deep"
+	fi
+	sed -i "/SetColorScheme(\"/s/.*/SetColorScheme(\"$THEME\")/" $NVIM_COLOR_FILE
+	
+	# We also need to update neovim
+	nvr --nostart --serverlist | xargs -I {} nvr --nostart --servername {} -cc 'so ~/.config/nvim/after/plugin/colors.lua'
+else
+	echo "usage: $0 (font|theme)"
+fi
+
+
+
