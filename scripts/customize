@@ -6,7 +6,7 @@ RG_ARGS='--only-matching --replace=$1'
 
 if [[ $1 == "font" ]]; then
 	TEXT="normal = \{ family = \"(.*?)\" ?"
-	SELECTED=`rg "$TEXT" $RG_ARGS $ALACRITTY_FILE | rofi -dmenu -p "Pick a font"`
+	SELECTED=`rg "$TEXT" $RG_ARGS $ALACRITTY_FILE | rofi -i -dmenu -p "Pick a font"`
 	if [[ $SELECTED == "" ]]; then
 		exit
 	fi
@@ -16,7 +16,7 @@ if [[ $1 == "font" ]]; then
 	notify-send "Selected $SELECTED"
 elif [[ $1 == "theme" ]]; then
 	TEXT="import = \[.*?/([-a-zA-Z]+).toml\"]"
-	THEME=`rg "$TEXT" $RG_ARGS $ALACRITTY_FILE | rofi -dmenu -p "Pick a theme"`
+	THEME=`rg "$TEXT" $RG_ARGS $ALACRITTY_FILE | rofi -i -dmenu -p "Pick a theme"`
 
 	if [[ $THEME == "" ]]; then
 		exit
