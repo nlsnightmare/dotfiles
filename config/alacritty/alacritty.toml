@@ -4,7 +4,6 @@ TERM = "xterm-256color"
 [font]
 size = 11.0
 normal = { family = "Iosevka Nerd Font Mono", style = "Semibold"}
-
 # normal = { family = "Cascadia Mono" }
 
 [font.offset]
@@ -16,9 +15,11 @@ y = 0
 padding = { x = 10, y = 10}
 
 [general]
-import = ["/home/maru/.config/alacritty/themes/catppuccin-frappe.toml"]
-# import = ["/home/maru/.config/alacritty/themes/catppuccin-mocha.toml"]
 # import = ["/home/maru/.config/alacritty/themes/catppuccin-frappe.toml"]
+# import = ["/home/maru/.config/alacritty/themes/catppuccin-mocha.toml"]
+# import = ["/home/maru/.config/alacritty/themes/challenger-deep.toml"]
+# import = ["/home/maru/.config/alacritty/themes/nightfox.toml"]
 # import = ["/home/maru/.config/alacritty/themes/ayu-mirage.toml"]
-# import = ["/home/maru/.config/alacritty/themes/everblush.toml"]
+import = ["/home/maru/.config/alacritty/themes/everblush.toml"]
+# import = ["/home/maru/.config/alacritty/themes/oxocarbon.toml"]
 # import = ["/home/maru/.config/alacritty/themes/rose-pine-dawn.toml"]
