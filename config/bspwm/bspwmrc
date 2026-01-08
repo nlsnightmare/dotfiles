@@ -50,8 +50,10 @@ bspc rule -a Gimp state=floating follow=on
 
 notify-send "bspwm" "done!"
 
-if [[ $# -eq 0 ]]; then
+if [[ $1 != "--reload" ]]; then
+  bspc desktop -a 1
   alacritty &
   sleep 0.2
   bspc node -t pseudo_tiled
 fi
+

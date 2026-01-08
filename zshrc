@@ -193,7 +193,7 @@ alias open='xdg-open'
 alias sudo='sudo -E '
 alias rtheme='theme --random'
 alias starwars='telnet towel.blinkenlights.nl'
-alias pf='php artisan test --filter'
+alias pf='XDEBUG_SESSION=1 php artisan test --filter' # enable xdebug when selecting a specific test
 alias gs='git status'
 alias gP='git pull';
 alias k8='kubectl'
