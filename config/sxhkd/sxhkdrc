@@ -34,7 +34,9 @@ super + c
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd && \
+	setxkbmap -option 'grp:alt_shift_toggle' -layout us,gr && \
+	notify-send "sxhkd reloaded" 
 
 # quit/restart bspwm
 super + shift + {e,r}
